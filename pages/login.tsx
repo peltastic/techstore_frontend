@@ -21,7 +21,10 @@ const Login: NextPage = ({}: Props) => {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
-
+  useEffect (() => {
+    const token= localStorage.getItem("token")
+    console.log(token)
+  }, []) 
   const signupMutation = useMutation((body: signupReq) => signUp(body), {
     onSuccess: (data) => {
       console.log(data);
