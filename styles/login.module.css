@@ -1,0 +1,5 @@
+.Login {
+  background: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
+    url("../assets/signup.jpg");
+    background-size: cover;
+}
