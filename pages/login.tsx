@@ -21,10 +21,10 @@ const Login: NextPage = ({}: Props) => {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
-  useEffect (() => {
-    const token= localStorage.getItem("token")
-    console.log(token)
-  }, []) 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+  }, []);
   const signupMutation = useMutation((body: signupReq) => signUp(body), {
     onSuccess: (data) => {
       console.log(data);
@@ -36,20 +36,17 @@ const Login: NextPage = ({}: Props) => {
     },
   });
 
-  const {isLoading, mutate } = useMutation(
-    (body: signinReq) => login(body),
-    {
-      onSuccess: (data) => {
-        console.log(data);
-        const res: any = data;
-        localStorage.setItem("token", res.data.accessToken);
-      },
-      onError: (error) => {
-        const message: any = error;
-        setErrorMessage(message.response.data.error);
-      },
-    }
-  );
+  const { isLoading, mutate } = useMutation((body: signinReq) => login(body), {
+    onSuccess: (data) => {
+      console.log(data);
+      const res: any = data;
+      localStorage.setItem("token", res.data.accessToken);
+    },
+    onError: (error) => {
+      const message: any = error;
+      setErrorMessage(message.response.data.error);
+    },
+  });
 
   const onChange = (e: any, type: string): void => {
     setErrorMessage("");
@@ -88,12 +85,14 @@ const Login: NextPage = ({}: Props) => {
           placeholder="Email"
           changed={(e) => onChange(e, "email")}
           value={signinState.email}
+          class="w-[70%] m-auto   mb-8 "
         />
         <Input
           type="password"
           placeholder="Password"
           changed={(e) => onChange(e, "password")}
           value={signinState.password}
+          class="w-[70%] m-auto   mb-8 "
         />
       </>
     );
@@ -105,18 +104,21 @@ const Login: NextPage = ({}: Props) => {
           placeholder="Username"
           changed={(e) => onChange(e, "name")}
           value={signupState.name}
+          class="w-[70%] m-auto  mb-8 "
         />
         <Input
           type="email"
           placeholder="Email"
           changed={(e) => onChange(e, "email")}
           value={signupState.email}
+          class="w-[70%] m-auto   mb-8 "
         />
         <Input
           type="password"
           placeholder="Password"
           changed={(e) => onChange(e, "password")}
           value={signupState.password}
+          class="w-[70%] m-auto   mb-8 "
         />
       </>
     );

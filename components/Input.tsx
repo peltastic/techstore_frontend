@@ -1,8 +1,9 @@
 type Props = {
   type: string;
-  placeholder: string;
+  placeholder: string | undefined;
   changed: (e: any) => void;
-  value: string
+  value: string | number
+  class: string 
 };
 
 function Input(props: Props) {
@@ -12,7 +13,7 @@ function Input(props: Props) {
       placeholder={props.placeholder}
       onChange={props.changed}
       value={props.value}
-      className="block m-auto mb-8 w-[70%] rounded-3xl px-5 py-2 text-xl text-center text-[#514e4e]"
+      className={`${props.class} block rounded-3xl px-5 py-2 text-xl text-center text-[#514e4e]`}
     />
   );
 }
