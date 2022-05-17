@@ -1,25 +1,20 @@
-import { signupReq, signinReq } from "../types/auth";
-import { authInstance } from "./config";
-import { baseUrl } from "./config";
-import axios from "axios";
+import { signupReq, signinReq, refreshReq } from "../types/auth";
+import { authInstance, privateInstance } from "./config";
 
-const signUp = async (body: signupReq) => {
+const signUp = (body: signupReq) => {
   return authInstance.post("/auth/signup", body);
 };
 
-const login = async (body: signinReq) => {
+const login = (body: signinReq) => {
   return authInstance.post("/auth/login", body);
 };
+const refresh = (body: refreshReq) => {
+  return authInstance.post("/auth/refresh", body)
+}
 
-const user = async (token: string | null) => {
-  return axios({
-    method: "get",
-    url: baseUrl + "/auth/user",
-    headers: {
-      "content-type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
+const user = (token: string) => {
+  privateInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  return privateInstance.get("auth/user");
 };
 
-export { signUp, login, user };
+export { signUp, login, user, refresh };

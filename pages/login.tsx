@@ -1,15 +1,25 @@
 import type { NextPage } from "next";
-import { useMutation } from "react-query";
-import { signUp, login } from "../api/requests/auth";
+import { useMutation, useQuery } from "react-query";
+import { signUp, login, user } from "../api/requests/auth";
 import { signinReq, signupReq } from "../api/types/auth";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Input from "../components/Input";
 import classes from "../styles/login.module.css";
 import Spinner from "../components/Spinner";
+import Cookies from "universal-cookie";
+import { setToken } from "../redux/reducers/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfo } from "../redux/reducers/user";
+import { RootState } from "../redux/store";
 
 type Props = {};
 
 const Login: NextPage = ({}: Props) => {
+  const token = useSelector((state: RootState) => state.auth.token);
+  const cookies = new Cookies();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [signupState, setSignupState] = useState<signupReq>({
     name: "",
@@ -21,10 +31,6 @@ const Login: NextPage = ({}: Props) => {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log(token);
-  }, []);
   const signupMutation = useMutation((body: signupReq) => signUp(body), {
     onSuccess: (data) => {
       console.log(data);
@@ -35,18 +41,44 @@ const Login: NextPage = ({}: Props) => {
       setErrorMessage(message.response.data.error);
     },
   });
-
   const { isLoading, mutate } = useMutation((body: signinReq) => login(body), {
     onSuccess: (data) => {
+      setSigninState({ ...signinState, email: "", password: "" });
       console.log(data);
       const res: any = data;
       localStorage.setItem("token", res.data.accessToken);
+      localStorage.setItem("refresh", res.data.refreshToken);
+      dispatch(setToken(res.data.accessToken));
+      
     },
     onError: (error) => {
       const message: any = error;
       setErrorMessage(message.response.data.error);
     },
   });
+  const { refetch } = useQuery("user", () => user(token), {
+    enabled: false,
+    onSuccess: (data) => {
+      if (data) {
+        console.log("done");
+        const res = data.data;
+        dispatch(
+          setUserInfo({
+            username: res.user_name,
+            userId: res.user_id,
+            email: res.email,
+            userRole: res.user_role,
+          })
+        );
+        router.push("/")
+      }
+    },
+  });
+  useEffect(() => {
+    if (token) {
+      refetch()
+    }
+  }, [token])
 
   const onChange = (e: any, type: string): void => {
     setErrorMessage("");
@@ -64,7 +96,6 @@ const Login: NextPage = ({}: Props) => {
         setErrorMessage("Enter Empty Fields");
       } else {
         mutate(signinState);
-        setSigninState({ ...signinState, email: "", password: "" });
       }
     } else {
       if (!signupState.email || !signupMutation) {

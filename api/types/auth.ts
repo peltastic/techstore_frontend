@@ -8,3 +8,7 @@ export type signinReq = {
   email: string;
   password: string;
 };
+
+export type refreshReq = {
+  refreshToken: string;
+};

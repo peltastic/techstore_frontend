@@ -4,3 +4,9 @@ export const authInstance = axios.create({
   baseURL: baseUrl,
   headers: { "content-type": "application/json" },
 });
+
+export const privateInstance = axios.create({
+  baseURL: baseUrl,
+  headers: { "content-type": "application/json" },
+});
+

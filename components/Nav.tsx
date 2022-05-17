@@ -6,11 +6,18 @@ import { useRouter } from "next/router";
 import classes from "../styles/nav.module.css";
 import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 type Props = {};
 
 function Nav({}: Props) {
   const user = useSelector((state: RootState) => state.user.userInfo);
   const router = useRouter();
+  const [isAdmin, setIsAdmin] = useState<boolean>();
+  useEffect(() => {
+    if (user.userRole === 5180) {
+      setIsAdmin(true);
+    }
+  }, [user]);
   return (
     <nav className="w-full border-b-[#B3541E] px-8 py-6 border-b flex items-center text-white fixed top-0 left-0 z-20 bg-[#040303]">
       <Image src={Logo} alt="" />
@@ -38,7 +45,7 @@ function Nav({}: Props) {
         </li>
       </ul>
       <div className="flex items-center">
-        {user.userRole === 5180 ? (
+        {isAdmin ? (
           <Link href={"/admin"}>
             <a>
               <button
