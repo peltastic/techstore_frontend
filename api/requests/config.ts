@@ -10,3 +10,7 @@ export const privateInstance = axios.create({
   headers: { "content-type": "application/json" },
 });
 
+export const publicInstance = axios.create({
+  baseURL: baseUrl,
+  headers: { "content-type": "application/json" },
+});

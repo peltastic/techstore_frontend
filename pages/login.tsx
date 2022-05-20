@@ -7,17 +7,12 @@ import { useRouter } from "next/router";
 import Input from "../components/Input";
 import classes from "../styles/login.module.css";
 import Spinner from "../components/Spinner";
-import Cookies from "universal-cookie";
-import { setToken } from "../redux/reducers/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUserInfo } from "../redux/reducers/user";
-import { RootState } from "../redux/store";
 
 type Props = {};
 
 const Login: NextPage = ({}: Props) => {
-  const token = useSelector((state: RootState) => state.auth.token);
-  const cookies = new Cookies();
   const router = useRouter();
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState<boolean>(true);
@@ -46,39 +41,16 @@ const Login: NextPage = ({}: Props) => {
       setSigninState({ ...signinState, email: "", password: "" });
       console.log(data);
       const res: any = data;
-      localStorage.setItem("token", res.data.accessToken);
-      localStorage.setItem("refresh", res.data.refreshToken);
-      dispatch(setToken(res.data.accessToken));
-      
+      sessionStorage.setItem("token", res.data.accessToken);
+      console.log(res.data.accessToken)
+      router.push("/");
     },
     onError: (error) => {
       const message: any = error;
       setErrorMessage(message.response.data.error);
     },
   });
-  const { refetch } = useQuery("user", () => user(token), {
-    enabled: false,
-    onSuccess: (data) => {
-      if (data) {
-        console.log("done");
-        const res = data.data;
-        dispatch(
-          setUserInfo({
-            username: res.user_name,
-            userId: res.user_id,
-            email: res.email,
-            userRole: res.user_role,
-          })
-        );
-        router.push("/")
-      }
-    },
-  });
-  useEffect(() => {
-    if (token) {
-      refetch()
-    }
-  }, [token])
+  
 
   const onChange = (e: any, type: string): void => {
     setErrorMessage("");

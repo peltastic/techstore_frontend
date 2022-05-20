@@ -4,7 +4,6 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { Provider } from "react-redux";
 import type { AppProps } from "next/app";
 import { store } from "../redux/store";
-import Global from "../components/Global";
 
 const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
@@ -12,7 +11,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <Global />
         <Component {...pageProps} />
       </Provider>
       <ReactQueryDevtools initialIsOpen={false} />

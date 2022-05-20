@@ -5,19 +5,53 @@ import { BsCart3 } from "react-icons/bs";
 import { useRouter } from "next/router";
 import classes from "../styles/nav.module.css";
 import { RootState } from "../redux/store";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { user } from "../api/requests/auth";
+import { setUserInfo } from "../redux/reducers/user";
 type Props = {};
 
 function Nav({}: Props) {
-  const user = useSelector((state: RootState) => state.user.userInfo);
+  const dispatch = useDispatch();
+
+  let token: string;
+
+  const userData = useSelector((state: RootState) => state.user.userInfo);
   const router = useRouter();
   const [isAdmin, setIsAdmin] = useState<boolean>();
+
+  const { refetch } = useQuery("user", () => user(token), {
+    enabled: false,
+    onSuccess: (data) => {
+      if (data) {
+        console.log("done");
+        const res = data.data;
+        dispatch(
+          setUserInfo({
+            username: res.user_name,
+            userId: res.user_id,
+            email: res.email,
+            userRole: res.user_role,
+          })
+        );
+      }
+    },
+  });
   useEffect(() => {
-    if (user.userRole === 5180) {
+    if (userData.userRole === 5180) {
       setIsAdmin(true);
     }
-  }, [user]);
+  }, [userData]);
+  useEffect(() => {
+    const tokenRes = sessionStorage.getItem("token");
+    if (tokenRes) {
+      token = tokenRes;
+    }
+    if (token) {
+      refetch();
+    }
+  }, []);
   return (
     <nav className="w-full border-b-[#B3541E] px-8 py-6 border-b flex items-center text-white fixed top-0 left-0 z-20 bg-[#040303]">
       <Image src={Logo} alt="" />
@@ -38,11 +72,13 @@ function Nav({}: Props) {
             <a>Laptops</a>
           </Link>
         </li>
-        <li className="mx-[4rem]">
-          <Link href={"/login"}>
-            <a>Sign In</a>
-          </Link>
-        </li>
+        {!userData.userId ? (
+          <li className="mx-[4rem]">
+            <Link href={"/login"}>
+              <a>Sign In</a>
+            </Link>
+          </li>
+        ) : null}
       </ul>
       <div className="flex items-center">
         {isAdmin ? (

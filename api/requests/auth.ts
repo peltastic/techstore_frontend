@@ -9,8 +9,8 @@ const login = (body: signinReq) => {
   return authInstance.post("/auth/login", body);
 };
 const refresh = (body: refreshReq) => {
-  return authInstance.post("/auth/refresh", body)
-}
+  return authInstance.post("/auth/refresh", body);
+};
 
 const user = (token: string) => {
   privateInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;

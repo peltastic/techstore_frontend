@@ -13,6 +13,8 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase/firebase";
 import { addProduct } from "../api/requests/product";
 import { ProductReq } from "../api/types/product";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 type Props = {};
 type Product = {
@@ -22,10 +24,12 @@ type Product = {
   price: number;
   category: string;
   type: string;
-  imageFile: any;
+  image: any;
 };
 
 function AddProducts({}: Props) {
+  let token: string;
+
   const [productData, setProductData] = useState<Product>({
     name: "",
     desc: "",
@@ -33,11 +37,11 @@ function AddProducts({}: Props) {
     price: 0,
     category: "",
     type: "",
-    imageFile: "",
+    image: "",
   });
   const [uploadErrMessage, setUploadErrMessage] = useState<string>("");
 
-  const [imagePreview, setImagePreview] = useState<string>("");
+  const [imagePreview, setImagePreview] = useState<any>("");
 
   const { isError, data, mutate, isSuccess, isLoading } =
     useMutation(uploadFile);
@@ -51,14 +55,19 @@ function AddProducts({}: Props) {
     if (isSuccess) {
       getDownloadURL(ref(storage, metadata))
         .then((url) => {
-          setImagePreview(url);
-          setProductData({ ...productData, imageFile: url });
+          setProductData({ ...productData, image: url });
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, [isSuccess]);
+  useEffect(() => {
+    const tokenSes = localStorage.getItem("token");
+    if (tokenSes) {
+      token = tokenSes;
+    }
+  }, []);
 
   const onChangeHandler = (e: any, type: string): void => {
     setProductData({ ...productData, [type]: e.target.value });
@@ -66,7 +75,7 @@ function AddProducts({}: Props) {
 
   const onChangeFile = (e: any): void => {
     const file = e.target.files[0];
-    setProductData({ ...productData, imageFile: file });
+    setImagePreview(file);
     mutate(file);
   };
   const onSubmit = (): void => {
@@ -74,24 +83,25 @@ function AddProducts({}: Props) {
       !productData.brand ||
       !productData.category ||
       !productData.desc ||
-      !productData.imageFile ||
+      !productData.image ||
       !productData.name ||
       !productData.price ||
       !productData.type
     ) {
       setUploadErrMessage("Complete the Form");
     } else {
-      const token = localStorage.getItem("token");
       const body: ProductReq = {
         name: productData.name,
         price: productData.price,
         category: productData.category,
         productType: productData.type,
         productBrand: productData.brand,
-        productImageFileUrl: productData.imageFile,
+        productImageFileUrl: productData.image,
         desc: productData.desc,
       };
-      upload.mutate({ token: token, body: body });
+      if (token) {
+        upload.mutate({ token: token, body: body });
+      }
     }
   };
 
@@ -222,18 +232,18 @@ function AddProducts({}: Props) {
             <div className="w-[50%] flex justify-center  ">
               <div
                 className={`mx-auto items-center border flex px-[2rem] ${
-                  productData.imageFile ? "bg-[#B3541E]" : null
+                  imagePreview ? "bg-[#B3541E]" : null
                 }`}
               >
                 <input
                   type="file"
                   className={`${classes.FileInput} ${
-                    productData.imageFile ? "text-white" : "text-[#B3541E]"
+                    imagePreview ? "text-white" : "text-[#B3541E]"
                   }  mx-auto`}
                   onChange={onChangeFile}
                   accept="image/png, image/jpeg"
                 />
-                {!productData.imageFile ? (
+                {!imagePreview ? (
                   <IoAddSharp className="text-3xl text-[#B3541E]" />
                 ) : (
                   <IoMdCheckmark className="text-3xl text-white" />
@@ -244,11 +254,11 @@ function AddProducts({}: Props) {
           {isLoading ? (
             <p className="text-center text-2xl text-[#B3541E]">Uplaoding...</p>
           ) : null}
-          {imagePreview ? (
+          {productData.image ? (
             <p className="text-center text-2xl mb-4">Image Preview</p>
           ) : null}
-          {imagePreview ? (
-            <img src={imagePreview} className="mx-auto" alt="" />
+          {productData.image ? (
+            <img src={productData.image} className="mx-auto" alt="" />
           ) : null}
         </div>
       </div>
