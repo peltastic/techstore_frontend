@@ -3,15 +3,18 @@ import classes from "../styles/admin.module.css";
 import Dashboard from "../components/Dashboard";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
+import {useSelector} from "react-redux"
+import {RootState} from "../redux/store"
 type Props = {};
 
 function Admin({}: Props) {
+  const username = useSelector((state: RootState) => state.user.userInfo.username)
   return (
     <>
       <Nav />
       <div className="flex mt-[6rem]">
         <div className="w-[50%] mr-2">
-          <Dashboard title={"Admin Dashboard"} username="pelz" />
+          <Dashboard title={"Admin Dashboard"} username={username} />
         </div>
         <div className="w-[50%]">
           <section className={`w-full h-[30rem] relative text-white mb-[.5rem] ${classes.Add}`}>
