@@ -9,19 +9,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { user } from "../api/requests/auth";
-import { setUserInfo } from "../redux/reducers/user";
+import { setUserInfo, setInitialCartCount } from "../redux/reducers/user";
 import Messages from "../components/Messages";
-type Props = {};
+import NavMobile from "./NavMobile";
 
-function Nav({}: Props) {
+function Nav() {
   const dispatch = useDispatch();
 
   let token: string;
 
   const userData = useSelector((state: RootState) => state.user.userInfo);
+  const cartCount = useSelector((state: RootState) => state.user.cartCount);
   const router = useRouter();
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [showMessage, setShowMessage] = useState<boolean>(false);
+  const [showNav, setShowNav] = useState<boolean>(false);
 
   const { refetch } = useQuery("user", () => user(token), {
     enabled: false,
@@ -29,6 +31,7 @@ function Nav({}: Props) {
       if (data) {
         console.log("done");
         const res = data.data;
+        console.log(res);
         dispatch(
           setUserInfo({
             username: res.user_name,
@@ -37,6 +40,7 @@ function Nav({}: Props) {
             userRole: res.user_role,
           })
         );
+        dispatch(setInitialCartCount(res.cart_count));
       }
     },
   });
@@ -64,6 +68,7 @@ function Nav({}: Props) {
         userRole: 0,
       })
     );
+    dispatch(setInitialCartCount(0));
     router.push("/");
   };
 
@@ -77,7 +82,23 @@ function Nav({}: Props) {
   return (
     <>
       {showMessage ? <Messages className=" bg-red-500" name="Sign In" /> : null}
-      <nav className="w-full border-b-[#B3541E] px-8 py-6 border-b flex items-center text-white fixed top-0 left-0 z-20 bg-[#040303]">
+      <div
+        className={`${classes.NavMobileIcon}  z-50`}
+        onClick={() => setShowNav(!showNav)}
+      >
+        <div className={`${showNav ? classes.Top : null}`}></div>
+        <div className={`${showNav ? classes.Middle : null}`}></div>
+        <div className={`${showNav ? classes.Below : null}`}></div>
+      </div>
+      <NavMobile
+        logout={logout}
+        show={showNav}
+        isAdmin={isAdmin}
+        userId={!!userData.userId}
+      />
+      <nav
+        className={`${classes.Nav} w-full border-b-[#B3541E] px-8 py-6 border-b flex items-center text-white fixed top-0 left-0 z-20 bg-[#040303]`}
+      >
         <Image src={Logo} alt="" />
         <ul className="flex m-auto text-[1.2rem]">
           <li className="mx-[4rem]">
@@ -116,17 +137,17 @@ function Nav({}: Props) {
               </a>
             </Link>
           ) : null}
-          <div
-            className="ml-auto relative cursor-pointer"
-            onClick={cartHandler}
-          >
-            <BsCart3 className="text-2xl" />
-            <div className="h-[15px] w-[15px] flex justify-center items-center absolute top-[-7px] right-[-7px] bg-[#B3541E] px-[.5px] py-[.5px] rounded-full">
-              <p className="  text-sm  text-center">0</p>
-            </div>
-          </div>
         </div>
       </nav>
+      <div
+        className={`${classes.CartContainer} ml-auto fixed z-50 top-8 right-8 cursor-pointer`}
+        onClick={cartHandler}
+      >
+        <BsCart3 className={`${classes.Cart} text-2xl z-50 text-white`} />
+        <div className="h-[1.5rem] w-[1.5rem] flex justify-center items-center absolute top-[-7px] right-[-7px] bg-[#B3541E] px-[.5px] py-[.5px] rounded-full">
+          <p className=" text-white text-sm  text-center">{cartCount}</p>
+        </div>
+      </div>
     </>
   );
 }

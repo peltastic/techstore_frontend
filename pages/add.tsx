@@ -28,7 +28,6 @@ type Product = {
 };
 
 function AddProducts({}: Props) {
-  let token: string;
 
   const [productData, setProductData] = useState<Product>({
     name: "",
@@ -62,12 +61,6 @@ function AddProducts({}: Props) {
         });
     }
   }, [isSuccess]);
-  useEffect(() => {
-    const tokenSes = localStorage.getItem("token");
-    if (tokenSes) {
-      token = tokenSes;
-    }
-  }, []);
 
   const onChangeHandler = (e: any, type: string): void => {
     setProductData({ ...productData, [type]: e.target.value });
@@ -99,6 +92,7 @@ function AddProducts({}: Props) {
         productImageFileUrl: productData.image,
         desc: productData.desc,
       };
+      const token = sessionStorage.getItem("token")
       if (token) {
         upload.mutate({ token: token, body: body });
       }

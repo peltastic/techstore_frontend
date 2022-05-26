@@ -2,19 +2,16 @@ import type { NextPage } from "next";
 import { useMutation, useQuery } from "react-query";
 import { signUp, login, user } from "../api/requests/auth";
 import { signinReq, signupReq } from "../api/types/auth";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import Input from "../components/Input";
 import classes from "../styles/login.module.css";
 import Spinner from "../components/Spinner";
-import { useDispatch } from "react-redux";
-import { setUserInfo } from "../redux/reducers/user";
 
 type Props = {};
 
 const Login: NextPage = ({}: Props) => {
   const router = useRouter();
-  const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [signupState, setSignupState] = useState<signupReq>({
     name: "",
@@ -130,8 +127,8 @@ const Login: NextPage = ({}: Props) => {
   const activeStyle: string = " border-[#B3541E] border border-b-0 z-10";
   return (
     <div className="h-screen flex text-white ">
-      <div className={` w-[50%] ${classes.Login}`}></div>
-      <div className="w-[50%] px-8   my-auto">
+      <div className={` w-[50%] ${classes.LoginImage}`}></div>
+      <div className={`${classes.Login} w-[50%] px-8 my-auto`}>
         <div className=" flex justify-center ">
           <button
             className={`px-6 py-3${isLogin ? activeStyle : null}`}
@@ -153,7 +150,7 @@ const Login: NextPage = ({}: Props) => {
               <input
                 type="submit"
                 name="Next"
-                className="m-auto block border rounded-3xl px-5 py-2"
+                className="cursor-pointer m-auto block border rounded-3xl px-5 py-2"
               />
             </form>
           </div>

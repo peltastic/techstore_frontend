@@ -5,6 +5,8 @@ import { getCart } from "../api/requests/cart";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useEffect, useState } from "react";
+import classes from "../styles/cart.module.css";
+import ProductLoader from "../components/ProductLoader";
 
 type Props = {};
 
@@ -42,7 +44,7 @@ function Carts({}: Props) {
   return (
     <>
       <Nav />
-      <div className="mt-[10rem] mx-32">
+      <div className={`${classes.CartContainer} mt-[10rem] mx-32`}>
         {cartData.length > 0 ? (
           <>
             {cartData.map((item, index) => {
@@ -57,11 +59,17 @@ function Carts({}: Props) {
                   count={item?.count}
                   cartId={item?.cartId}
                   category={item?.category}
+                  type={item?.type}
                 />
               );
             })}
           </>
-        ) : null}
+        ) : <>
+        <ProductLoader type="cart" />
+        <ProductLoader type="cart" />
+        <ProductLoader type="cart" />
+        <ProductLoader type="cart" />
+        </>}
       </div>
     </>
   );

@@ -1,0 +1,15 @@
+@media (max-width: 650px) {
+  .Cart {
+      width: 95%;
+  }
+  .CartContainer {
+      margin: 0 2rem;
+      margin-top: 10rem;
+  }
+}
+@media (max-width: 400px) {
+
+  .CartContainer {
+      margin-top: 15rem;
+  }
+}

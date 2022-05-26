@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import Product from "../../../components/Product";
 import Nav from "../../../components/Nav";
-type Props = {};
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { getProducts } from "../../../api/requests/product";
+import ProductLoader from "../../../components/ProductLoader";
+import classes from "../../../styles/type.module.css";
 
-function ProductType({}: Props) {
+function ProductType() {
   const router = useRouter();
   const { category, type } = router.query;
   const [products, setProducts] = useState<any[]>([]);
-  const { refetch } = useQuery(
+  const { refetch, isLoading } = useQuery(
     "products",
     () => {
       if (!category || !type) {
-        return
+        return;
       }
-      return getProducts({ category: category, type: type })
+      return getProducts({ category: category, type: type });
     },
     {
       onSuccess: (data) => {
@@ -28,7 +29,7 @@ function ProductType({}: Props) {
   );
   useEffect(() => {
     if (!category || !type) {
-      return
+      return;
     }
     refetch();
   }, [category, type]);
@@ -36,22 +37,34 @@ function ProductType({}: Props) {
   return (
     <div className="text-white">
       <Nav />
-      {products ? (
-        <div className="px-8 mt-24 flex">
-          {products?.map((item: any, index: any) => {
-            return (
-              <Product
-                key={index}
-                name={item?.name}
-                price={item?.price}
-                image={item?.product_image}
-                id={item?.product_id}
-                category={item?.category}
-              />
-            );
-          })}
-        </div>
-      ) : null}
+      <div className="px-8 mt-24 flex w-full flex-wrap justify-center">
+        {!isLoading ? (
+          <>
+            {products?.map((item: any, index: any) => {
+              return (
+                <Product
+                  key={index}
+                  name={item?.name}
+                  price={item?.price}
+                  image={item?.product_image}
+                  id={item?.product_id}
+                  category={item?.category}
+                  type={item?.product_type}
+                />
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <ProductLoader type="product"/>
+            <ProductLoader type="product"/>
+            <ProductLoader type="product"/>
+            <ProductLoader type="product"/>
+            <ProductLoader type="product"/>
+            <ProductLoader type="product"/>
+          </>
+        )}
+      </div>
     </div>
   );
 }

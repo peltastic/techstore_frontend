@@ -1,5 +1,17 @@
-.Login {
-  background: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
+.LoginImage {
+  background: linear-gradient(105deg, rgba(0, 0, 0, 0.398), #000),
     url("../assets/signup.jpg");
-    background-size: cover;
+  background-size: cover;
+}
+
+@media (max-width: 650px) {
+  .LoginImage {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+    .Login {
+      width: 100%;
+    }
 }

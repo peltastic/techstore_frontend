@@ -1,0 +1,57 @@
+@media (max-width: 1200px) {
+  .Ops {
+    width: 40%;
+  }
+}
+@media (max-width: 600px) {
+  .Ops {
+    width: 50%;
+    clip-path: none;
+    /* margin-top: 9rem; */
+  }
+  .Ops a {
+      padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 1200px) {
+    .OpsLeft {
+        margin-right: 0;
+    }
+}
+@media (max-width: 700px) {
+    .OpsLeft {
+        margin-right: -2rem;
+        margin-left: 0;
+    }
+}
+@media (max-width: 600px) {
+    .OpsLeft {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .OpsRight {
+        margin-left: -2rem;
+        margin-right: 0;
+    }
+}
+@media (max-width: 600px) {
+    .OpsRight {
+       margin-left: 0;
+       width: 100%;
+    }
+    .OpsRight div {
+        left: 30%;
+    }
+}
+
+@media (max-width: 600px) {
+    .Container {
+        padding: 0 2rem;
+        margin-top: 8rem;
+    }
+}

@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import Nav from "../../../../components/Nav";
 import { MdAdd } from "react-icons/md";
 import { useQuery, useMutation } from "react-query";
+import { useDispatch } from "react-redux";
+import {
+  incrementCartCount,
+} from "../../../../redux/reducers/user";
 import {
   addCart,
   checkCart,
@@ -10,6 +14,7 @@ import {
 } from "../../../../api/requests/cart";
 import { getProduct } from "../../../../api/requests/product";
 import classes from "../../../../styles/button.module.css";
+import styles from "../../../../styles/desc.module.css";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
@@ -18,6 +23,7 @@ import Messages from "../../../../components/Messages";
 type Props = {};
 
 function Description({}: Props) {
+  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.userInfo);
   const router = useRouter();
   const { category, desc } = router.query;
@@ -66,17 +72,17 @@ function Description({}: Props) {
 
   const { mutate } = useMutation(addCart, {
     onSuccess: (data) => {
-      console.log(data);
+      dispatch(incrementCartCount());
     },
   });
   const increaseMutation = useMutation(increaseCart, {
     onSuccess: () => {
-      setTotalPrice((prevState: number): number => (prevState += price));
+      setTotalPrice((prevState: number): number => prevState += price);
     },
   });
   const decreaseMutation = useMutation(decreaseCart, {
     onSuccess: () => {
-      setTotalPrice((prevState: number): number => (prevState -= price));
+      setTotalPrice((prevState: number): number => prevState - price);
     },
   });
   const increaseCartHandler = () => {
@@ -158,7 +164,7 @@ function Description({}: Props) {
         console.log("signup");
       }
     } else {
-      setShowMessage(!showMessage)
+      setShowMessage(!showMessage);
     }
   };
 
@@ -166,9 +172,11 @@ function Description({}: Props) {
     <>
       {showMessage ? <Messages className=" bg-red-500" name="Sign In" /> : null}
       <Nav />
-      <div className="text-white mt-[7rem]  w-[90%] h-[80vh] flex flex-wrap">
+      <div
+        className={`text-white mt-[7rem]  w-[90%] h-[80vh] flex flex-wrap ${styles.Container}`}
+      >
         <div className="w-[50%] pl-5">
-          <div className="h-[50%] mx-auto">
+          <div className="w-[50%] mx-auto">
             <img src={data?.product_image} alt="" className="h-full" />
           </div>
         </div>

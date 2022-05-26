@@ -7,4 +7,5 @@ export type UserInfo = {
 
 export type UserState = {
   userInfo: UserInfo;
+  cartCount: number
 };

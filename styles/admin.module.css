@@ -15,3 +15,33 @@
     url("../assets/addProducts.jpg");
   background-size: cover;
 }
+
+@media (max-width: 650px) {
+  .Container {
+    margin-top: 8rem;
+  }
+}
+@media (max-width: 650px) {
+  .Container {
+    margin-top: 9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .DashBoard {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .Options {
+    width: 100%;
+  }
+  .Options section {
+    margin-bottom: 2rem;
+  }
+  .Options section div{
+    left: 12rem;
+  }
+}

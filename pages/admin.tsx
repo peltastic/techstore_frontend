@@ -12,11 +12,11 @@ function Admin({}: Props) {
   return (
     <>
       <Nav />
-      <div className="flex mt-[6rem]">
-        <div className="w-[50%] mr-2">
+      <div className={`${classes.Container} flex flex-wrap mt-[6rem]`}>
+        <div className={`${classes.DashBoard} w-[49%] mr-2`}>
           <Dashboard title={"Admin Dashboard"} username={username} />
         </div>
-        <div className="w-[50%]">
+        <div className={`w-[50%] ${classes.Options}`}>
           <section className={`w-full h-[30rem] relative text-white mb-[.5rem] ${classes.Add}`}>
             <div className=" absolute top-[50%] left-[30%] -translate-x-[50%] -translate-y-[50%]">
               <h1 className="mb-7 text-3xl">ADD PRODUCTS</h1>

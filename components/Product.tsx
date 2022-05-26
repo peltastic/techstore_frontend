@@ -3,6 +3,8 @@ import { MdAdd } from "react-icons/md";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import {incrementCartCount,} from "../redux/reducers/user"
+import { useDispatch } from "react-redux";
 import { useMutation, useQuery } from "react-query";
 import {
   addCart,
@@ -11,6 +13,7 @@ import {
   checkCart,
 } from "../api/requests/cart";
 import { AiOutlineMinus } from "react-icons/ai";
+import classes from "../styles/product.module.css";
 
 type Props = {
   name: string;
@@ -18,15 +21,16 @@ type Props = {
   price: number;
   id: string;
   category: string;
+  type: string;
 };
 
 function Product(props: Props) {
+  const dispatch = useDispatch()
   const userId = useSelector((state: RootState) => state.user.userInfo.userId);
   const router = useRouter();
-  const { category } = router.query;
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [cartCount, setCartCount] = useState<number>(0);
-  const [price, setPrice] = useState<number>(0)
+  const [price, setPrice] = useState<number>(0);
   const { refetch } = useQuery(
     props.id,
     () => {
@@ -42,7 +46,7 @@ function Product(props: Props) {
           console.log(data);
           setTotalPrice(data?.data.total_price);
           setCartCount(data?.data.count);
-          setPrice(data?.data.price)
+          setPrice(data?.data.price);
         }
       },
       enabled: false,
@@ -51,17 +55,18 @@ function Product(props: Props) {
   );
   const { mutate } = useMutation(addCart, {
     onSuccess: (data) => {
+      dispatch(incrementCartCount())
       console.log(data);
     },
   });
   const increaseMutation = useMutation(increaseCart, {
     onSuccess: () => {
-      setTotalPrice((prevState: number): number => prevState += price);
+      setTotalPrice((prevState: number): number => (prevState += price));
     },
   });
   const decreaseMutation = useMutation(decreaseCart, {
     onSuccess: () => {
-      setTotalPrice((prevState: number): number => prevState -= price);
+      setTotalPrice((prevState: number): number => (prevState -= price));
     },
   });
   const increaseCartHandler = () => {
@@ -112,10 +117,14 @@ function Product(props: Props) {
     refetch();
   }, []);
   return (
-    <div className="w-[30%] cursor-pointer border text-white border-[#B3541E]  relative mx-8">
+    <div
+      className={`${classes.Product} pt-6 w-[30%] h-[30rem] cursor-pointer border text-white border-[#B3541E] relative mx-4`}
+    >
       <div
         className="h-[70%] "
-        onClick={() => router.push(`/products/${category}/regular/${props.id}`)}
+        onClick={() =>
+          router.push(`/products/${props.category}/${props.type}/${props.id}`)
+        }
       >
         <img src={props.image} className="h-full mx-auto block" />
       </div>
@@ -128,7 +137,7 @@ function Product(props: Props) {
           <div className=" w-[50%] justify-between flex items-center">
             <button
               onClick={decreaseCartHandler}
-              className="bg-[#B3541E] rounded-full p-[.1rem]"
+              className={`${classes.CartButton} bg-[#B3541E] rounded-full p-[.1rem]`}
               disabled={cartCount === 0}
             >
               <AiOutlineMinus />
@@ -136,7 +145,7 @@ function Product(props: Props) {
             <p>{cartCount}</p>
             <button
               onClick={increaseCartHandler}
-              className="bg-[#B3541E] rounded-full p-[.1rem]"
+              className={`${classes.CartButton} bg-[#B3541E] rounded-full p-[.1rem]`}
             >
               <MdAdd />
             </button>

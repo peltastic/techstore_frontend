@@ -1,3 +1,81 @@
 .Admin {
-    background-image: linear-gradient(100deg, #e0a481, #B3541E);
+  background-image: linear-gradient(100deg, #e0a481, #b3541e);
+}
+
+@media (max-width: 650px) {
+  .Nav {
+    display: none;
+  }
+}
+
+.NavMobileIcon {
+  display: none;
+}
+@media (max-width: 650px) {
+  .NavMobileIcon {
+    /* border: 1px solid #b3541e; */
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    width: 30px;
+    height: 30px;
+    padding: 0.7rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.NavMobileIcon div {
+  display: block;
+  margin: auto;
+  width: 90%;
+  background-color: #b3541e;
+  height: 2px;
+  transition: all 0.2s;
+}
+
+.NavMobileIcon .Top {
+  position: absolute;
+  transform: all 0.2s;
+  transform: rotate(45deg);
+  top: 2rem;
+}
+.NavMobileIcon .Middle {
+  opacity: 0;
+}
+.NavMobileIcon .Below {
+  position: absolute;
+  top: 2rem;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 650px) {
+  .Cart {
+    font-size: 3rem;
+  }
+  .Cart + div {
+    height: 2rem;
+    width: 2rem;
+  }
+  .Cart + div p {
+    font-size: 1.2rem;
+  }
+  .CartContainer {
+    top: 2rem;
+  }
+}
+@media (max-width: 550px) {
+  .Cart {
+    font-size: 4rem;
+  }
+  .Cart + div {
+    height: 3rem;
+    width: 3rem;
+  }
+  .Cart + div p {
+    font-size: 1.8rem;
+  }
+  .CartContainer {
+    top: 3rem;
+  }
 }
