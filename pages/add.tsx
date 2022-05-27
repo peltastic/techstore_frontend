@@ -13,8 +13,6 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase/firebase";
 import { addProduct } from "../api/requests/product";
 import { ProductReq } from "../api/types/product";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
 
 type Props = {};
 type Product = {
@@ -28,7 +26,6 @@ type Product = {
 };
 
 function AddProducts({}: Props) {
-
   const [productData, setProductData] = useState<Product>({
     name: "",
     desc: "",
@@ -47,7 +44,15 @@ function AddProducts({}: Props) {
   const metadata = data?.metadata.fullPath;
   const upload = useMutation(addProduct, {
     onSuccess: () => {
-      console.log("uploaded");
+      setProductData({
+        name: "",
+        desc: "",
+        brand: "",
+        price: 0,
+        category: "",
+        type: "",
+        image: "",
+      });
     },
   });
   useEffect(() => {
@@ -92,7 +97,7 @@ function AddProducts({}: Props) {
         productImageFileUrl: productData.image,
         desc: productData.desc,
       };
-      const token = sessionStorage.getItem("token")
+      const token = sessionStorage.getItem("token");
       if (token) {
         upload.mutate({ token: token, body: body });
       }
@@ -102,12 +107,15 @@ function AddProducts({}: Props) {
   return (
     <>
       <Nav />
-      <div className="flex w-full mt-[5.5rem]">
-        <div className="w-[50%]">
+      <div className={`flex ${classes.Container} flex-wrap w-full mt-[7.5rem]`}>
+        <div className={`${classes.DashboardContainer} w-[50%]`}>
           <Dashboard username="pelz" title="Add Products" />
           <div className="w-[full] h-[30rem] relative">
-            <div className=" text-white absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
-              <h1>
+            <div className=" text-white w-full absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+              {isLoading ? <h1 className="text-center">Uploading...</h1> : null}
+              {isSuccess ? <h1 className="text-center">Uploaded!</h1> : null}
+              <h1 className="mb-6 text-red-700">{uploadErrMessage}</h1>
+              <h1 className="text-center">
                 Click on the button below to upload product to store after
                 filling the form
               </h1>
@@ -121,10 +129,10 @@ function AddProducts({}: Props) {
             </div>
           </div>
         </div>
-        <div className="text-white w-[40%] mx-auto px-[2rem] ">
-          <h1 className="text-white text-4xl text-center my-6 mb-11">
-            ADD PRODUCT
-          </h1>
+        <div
+          className={`${classes.ProductContainer} text-white w-[40%] mx-auto px-[2rem]`}
+        >
+          <h1 className="text-white text-4xl text-center mb-11">ADD PRODUCT</h1>
           <div className="flex items-center w-full mb-[2rem]">
             <p className="mr-auto text-2xl">Product Name :</p>
             <Input
@@ -145,7 +153,7 @@ function AddProducts({}: Props) {
               placeholder={""}
             />
           </div>
-          <div className="flex items-center  w-full mb-[2rem]">
+          <div className="flex items-center w-full mb-[2rem]">
             <p className="mr-auto text-2xl">Product Brand :</p>
             <Input
               type="text"
@@ -185,7 +193,7 @@ function AddProducts({}: Props) {
                   onClick={() =>
                     setProductData({ ...productData, category: "laptops" })
                   }
-                  className={`h-[15px] w-[15px] ml-[2rem] block rounded-full ${
+                  className={`h-[1.5rem] w-[1.5rem] ml-[2rem] block rounded-full ${
                     productData.category === "laptops" ? "bg-[#B3541E]" : null
                   } border-[#B3541E] border`}
                 ></div>
@@ -216,7 +224,7 @@ function AddProducts({}: Props) {
                   }
                   className={`${
                     productData.type === "regular" ? "bg-[#B3541E]" : null
-                  } h-[15px] w-[15px] ml-[2rem] block rounded-full border-[#B3541E] border`}
+                  } h-[1.5rem] w-[1.5rem] ml-[2rem] block rounded-full border-[#B3541E] border`}
                 ></div>
               </div>
             </div>

@@ -12,6 +12,7 @@ import { user } from "../api/requests/auth";
 import { setUserInfo, setInitialCartCount } from "../redux/reducers/user";
 import Messages from "../components/Messages";
 import NavMobile from "./NavMobile";
+import Backdrop from "./Backdrop";
 
 function Nav() {
   const dispatch = useDispatch();
@@ -29,9 +30,7 @@ function Nav() {
     enabled: false,
     onSuccess: (data) => {
       if (data) {
-        console.log("done");
         const res = data.data;
-        console.log(res);
         dispatch(
           setUserInfo({
             username: res.user_name,
@@ -96,8 +95,9 @@ function Nav() {
         isAdmin={isAdmin}
         userId={!!userData.userId}
       />
+      {showNav ? <Backdrop /> : null}
       <nav
-        className={`${classes.Nav} w-full border-b-[#B3541E] px-8 py-6 border-b flex items-center text-white fixed top-0 left-0 z-20 bg-[#040303]`}
+        className={`${classes.Nav} w-full  px-8 py-6  flex items-center text-white fixed top-0 left-0 z-20 bg-[#040303]`}
       >
         <Image src={Logo} alt="" />
         <ul className="flex m-auto text-[1.2rem]">

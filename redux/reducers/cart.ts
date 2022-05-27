@@ -1,23 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 type Count = {
-    cartCount: number
+    checkout: number
 }
 
 const initialState:Count = {
-    cartCount: 0
+    checkout: 0
+
 };
 
 export const cartSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
-    setCartCount: (state, action: PayloadAction<number>) => {
-      state.cartCount = action.payload;
+    setCheckout: (state, action: PayloadAction<number>) => {
+      state.checkout = action.payload
     },
+    incrementCheckout: (state, action: PayloadAction<number>) => {
+      state.checkout += action.payload
+    },
+    decrementCheckout: (state, action: PayloadAction<number>) => {
+      state.checkout -= action.payload
+
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setCartCount } = cartSlice.actions;
+export const { setCheckout, incrementCheckout, decrementCheckout } = cartSlice.actions;
 
 export default cartSlice.reducer;

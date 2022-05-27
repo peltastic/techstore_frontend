@@ -1,15 +1,29 @@
+@media (max-width: 900px) {
+  .CartContainer {
+    margin: 0 2rem;
+    margin-top: 10rem;
+}
+}
 @media (max-width: 650px) {
   .Cart {
       width: 95%;
   }
-  .CartContainer {
-      margin: 0 2rem;
-      margin-top: 10rem;
+}
+@media (max-width: 500px) {
+  .Cart img {
+      height: auto;
+      width: 10rem;
   }
 }
 @media (max-width: 400px) {
 
   .CartContainer {
       margin-top: 15rem;
+  }
+  .Cart {
+    padding: 1rem 1rem;
+  }
+  .Cart img + p {
+    font-size: 1.5rem;
   }
 }

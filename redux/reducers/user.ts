@@ -24,10 +24,18 @@ export const userSlice = createSlice({
     incrementCartCount: (state) => {
       state.cartCount += 1;
     },
+    decrementCartCount: (state) => {
+      state.cartCount -= 1;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserInfo, setInitialCartCount, incrementCartCount } = userSlice.actions;
+export const {
+  setUserInfo,
+  setInitialCartCount,
+  incrementCartCount,
+  decrementCartCount,
+} = userSlice.actions;
 
 export default userSlice.reducer;

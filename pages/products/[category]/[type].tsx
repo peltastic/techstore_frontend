@@ -21,7 +21,6 @@ function ProductType() {
     },
     {
       onSuccess: (data) => {
-        console.log(data?.data.data);
         setProducts(data?.data.data);
       },
       refetchOnWindowFocus: false,

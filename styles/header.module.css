@@ -50,6 +50,10 @@ background-size: cover;
     margin: 0 auto;
     margin-top: 4rem;
   }
+  .Header {
+    height: 80vh;
+    position: relative;
+  }
    
 }
 

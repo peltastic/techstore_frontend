@@ -1,6 +1,3 @@
-import React from "react";
-import HeaderImg from "../assets/header.svg";
-import Image from "next/image";
 import classes from "../styles/header.module.css";
 import { FiArrowRight } from "react-icons/fi";
 import Link from "next/link";

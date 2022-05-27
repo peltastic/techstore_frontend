@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import Nav from "../../../../components/Nav";
 import { MdAdd } from "react-icons/md";
 import { useQuery, useMutation } from "react-query";
+import { splitNumber } from "../../../../utils/functions";
 import { useDispatch } from "react-redux";
 import {
   incrementCartCount,
+  decrementCartCount,
 } from "../../../../redux/reducers/user";
 import {
   addCart,
@@ -28,19 +30,20 @@ function Description({}: Props) {
   const router = useRouter();
   const { category, desc } = router.query;
   const [data, setData] = useState<any>("");
+  const [initialPrice, setInitialPrice] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
   const [cartCount, setCartCount] = useState<number>(0);
   const [showMessage, setShowMessage] = useState<boolean>(false);
 
-  const { refetch } = useQuery(
+  const productQuery = useQuery(
     "product",
     () => getProduct({ table: category, id: desc }),
     {
       onSuccess: (data) => {
-        console.log(data?.data);
         const res = data?.data;
         setData(res?.data);
+        setInitialPrice(res?.data.price);
       },
       enabled: false,
       refetchOnWindowFocus: false,
@@ -51,7 +54,6 @@ function Description({}: Props) {
     () => {
       let token = sessionStorage.getItem("token");
       if (!token || !user.userId || !desc) {
-        console.log("3");
         return;
       }
       return checkCart({ token: token, userId: user.userId, productId: desc });
@@ -59,7 +61,6 @@ function Description({}: Props) {
     {
       onSuccess: (data) => {
         if (data?.data) {
-          console.log(data);
           setTotalPrice(data?.data.total_price);
           setCartCount(data?.data.count);
           setPrice(data?.data.price);
@@ -71,18 +72,37 @@ function Description({}: Props) {
   );
 
   const { mutate } = useMutation(addCart, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       dispatch(incrementCartCount());
     },
   });
   const increaseMutation = useMutation(increaseCart, {
     onSuccess: () => {
-      setTotalPrice((prevState: number): number => prevState += price);
+      setTotalPrice((prevState: number): number => {
+        if (prevState) {
+          if (price) {
+            return (prevState += price);
+          }
+          return (prevState += initialPrice);
+        }
+        return (prevState = initialPrice * 2);
+      });
     },
   });
   const decreaseMutation = useMutation(decreaseCart, {
     onSuccess: () => {
-      setTotalPrice((prevState: number): number => prevState - price);
+      if (cartCount <= 1) {
+        dispatch(decrementCartCount());
+      }
+      setTotalPrice((prevState: number): number => {
+        if (cartCount <= 1) {
+          return prevState;
+        }
+        if (price) {
+          return (prevState -= price);
+        }
+        return (prevState -= initialPrice);
+      });
     },
   });
   const increaseCartHandler = () => {
@@ -131,14 +151,12 @@ function Description({}: Props) {
     if (!category || !desc) {
       return;
     }
-    refetch();
+    productQuery.refetch();
   }, [category, desc]);
   useEffect(() => {
     if (!desc || !user.userId) {
-      console.log("l");
       return;
     }
-    console.log("2");
     checCartQuery.refetch();
   }, [desc, user.userId]);
 
@@ -160,8 +178,6 @@ function Description({}: Props) {
           },
         });
         setCartCount(1);
-      } else {
-        console.log("signup");
       }
     } else {
       setShowMessage(!showMessage);
@@ -185,7 +201,7 @@ function Description({}: Props) {
           <h1 className="text-3xl mb-6">{data?.name}</h1>
           <p className="text-xl">{data?.desc}</p>
           <p className="my-8 text-xl">
-            N{totalPrice ? totalPrice : data?.price}
+            N{totalPrice ? splitNumber(totalPrice) : splitNumber(initialPrice)}
           </p>
           {cartCount < 1 ? (
             <button

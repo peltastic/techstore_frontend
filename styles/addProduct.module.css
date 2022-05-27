@@ -14,3 +14,25 @@
   font-weight: 700;
   font-size: 10pt;
 }
+
+@media (max-width: 1200px) {
+  .ProductContainer {
+    width: 50%;
+  }
+} 
+@media (max-width: 950px) {
+  .ProductContainer {
+    width: 100%;
+  }
+} 
+@media (max-width: 950px) {
+  .DashboardContainer {
+    width: 100%;
+  }
+} 
+
+@media (max-width: 550px) {
+  .Container {
+    margin-top: 9rem;
+  }
+}

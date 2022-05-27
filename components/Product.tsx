@@ -3,9 +3,10 @@ import { MdAdd } from "react-icons/md";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import {incrementCartCount,} from "../redux/reducers/user"
+import { incrementCartCount, decrementCartCount } from "../redux/reducers/user";
 import { useDispatch } from "react-redux";
 import { useMutation, useQuery } from "react-query";
+import { splitNumber } from "../utils/functions";
 import {
   addCart,
   increaseCart,
@@ -25,7 +26,7 @@ type Props = {
 };
 
 function Product(props: Props) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const userId = useSelector((state: RootState) => state.user.userInfo.userId);
   const router = useRouter();
   const [totalPrice, setTotalPrice] = useState<number>(0);
@@ -43,7 +44,6 @@ function Product(props: Props) {
     {
       onSuccess: (data) => {
         if (data?.data) {
-          console.log(data);
           setTotalPrice(data?.data.total_price);
           setCartCount(data?.data.count);
           setPrice(data?.data.price);
@@ -55,8 +55,7 @@ function Product(props: Props) {
   );
   const { mutate } = useMutation(addCart, {
     onSuccess: (data) => {
-      dispatch(incrementCartCount())
-      console.log(data);
+      dispatch(incrementCartCount());
     },
   });
   const increaseMutation = useMutation(increaseCart, {
@@ -66,6 +65,9 @@ function Product(props: Props) {
   });
   const decreaseMutation = useMutation(decreaseCart, {
     onSuccess: () => {
+      if (cartCount <= 1) {
+        dispatch(decrementCartCount());
+      }
       setTotalPrice((prevState: number): number => (prevState -= price));
     },
   });
@@ -113,12 +115,11 @@ function Product(props: Props) {
     if (!userId || !props.id) {
       return;
     }
-    console.log(props.name);
     refetch();
   }, []);
   return (
     <div
-      className={`${classes.Product} pt-6 w-[30%] h-[30rem] cursor-pointer border text-white border-[#B3541E] relative mx-4`}
+      className={`${classes.Product} mb-8 pt-6 w-[30%] h-[30rem] cursor-pointer border text-white border-[#B3541E] relative mx-4`}
     >
       <div
         className="h-[70%] "
@@ -131,7 +132,7 @@ function Product(props: Props) {
       <h1 className="text-center mt-[2rem] text-2xl">{props.name}</h1>
       <div className=" w-full text-[1.5rem] flex absolute justify-center bottom-0 left-0 px-6 py-4 ">
         <p className={`${cartCount ? "mr-auto" : null}`}>
-          N{totalPrice ? totalPrice : props.price}
+          N{totalPrice ? splitNumber(totalPrice) : splitNumber(props.price)}
         </p>
         {cartCount ? (
           <div className=" w-[50%] justify-between flex items-center">

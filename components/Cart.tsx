@@ -2,13 +2,14 @@ import { MdAdd } from "react-icons/md";
 import { AiOutlineMinus } from "react-icons/ai";
 import { useMutation } from "react-query";
 import { increaseCart, decreaseCart, addCart } from "../api/requests/cart";
-import { incrementCartCount } from "../redux/reducers/user";
 import { useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import classes from "../styles/cart.module.css";
 import { useRouter } from "next/router";
+import { splitNumber } from "../utils/functions";
+import { incrementCheckout, decrementCheckout } from "../redux/reducers/cart";
 
 type Props = {
   productId: string;
@@ -32,29 +33,26 @@ function Cart(props: Props) {
   useEffect(() => {
     if (props.count) {
       setCurrentCount(props.count);
-      console.log(props.type);
     }
   }, [props.count]);
   useEffect(() => {
     if (props.price) {
-      console.log(props.price);
       setPrice(props.price);
     }
   }, [props.price]);
   useEffect(() => {
     if (props.total_price) {
-      console.log(props.total_price);
       setTotalPrice(props.total_price);
     }
   }, [props.total_price]);
   const { mutate } = useMutation(addCart, {
-    onSuccess: (data) => {
-      dispatch(incrementCartCount());
+    onSuccess: () => {
+      dispatch(incrementCheckout(price));
     },
   });
   const increaseMutation = useMutation(increaseCart, {
     onSuccess: () => {
-      console.log(props.price);
+      dispatch(incrementCheckout(price));
       setTotalPrice((prevState: number): number => {
         return (prevState += price);
       });
@@ -62,7 +60,7 @@ function Cart(props: Props) {
   });
   const decreaseMutation = useMutation(decreaseCart, {
     onSuccess: () => {
-      console.log(props.price);
+      dispatch(decrementCheckout(price));
       setTotalPrice((prevState: number): number => {
         if (currentCount <= 1) {
           return prevState;
@@ -129,7 +127,10 @@ function Cart(props: Props) {
       </p>
       <div className="w-[30%] h-[90%] flex flex-col justify-between items-center">
         <p className="text-4xl">
-          N{totalPrice ? totalPrice : props.total_price}
+          N
+          {totalPrice
+            ? splitNumber(totalPrice)
+            : splitNumber(props.total_price)}
         </p>
         <div className="flex w-full justify-around items-center">
           <button

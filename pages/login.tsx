@@ -25,7 +25,6 @@ const Login: NextPage = ({}: Props) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const signupMutation = useMutation((body: signupReq) => signUp(body), {
     onSuccess: (data) => {
-      console.log(data);
       setIsLogin(true);
     },
     onError: (error) => {
@@ -36,11 +35,9 @@ const Login: NextPage = ({}: Props) => {
   const { isLoading, mutate } = useMutation((body: signinReq) => login(body), {
     onSuccess: (data) => {
       setSigninState({ ...signinState, email: "", password: "" });
-      console.log(data);
       const res: any = data;
       sessionStorage.setItem("token", res.data.accessToken);
-      console.log(res.data.accessToken)
-      router.push("/");
+      router.back()
     },
     onError: (error) => {
       const message: any = error;
