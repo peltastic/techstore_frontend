@@ -137,40 +137,52 @@ function AddProducts({}: Props) {
             <p className="mr-auto text-2xl">Product Name :</p>
             <Input
               type="text"
-              class="w-[60%]"
+              class="w-full"
               changed={(e) => onChangeHandler(e, "name")}
               value={productData.name}
               placeholder={""}
+              clicked={()=>{return}}
+              show=""
+              section="add"
             />
           </div>
           <div className="flex items-center  w-full mb-[2rem]">
             <p className="mr-auto text-2xl">Description :</p>
             <Input
               type="text"
-              class="w-[60%]"
+              class="w-full"
               changed={(e) => onChangeHandler(e, "desc")}
               value={productData.desc}
               placeholder={""}
+              clicked={()=>{return}}
+              show=""
+              section="add"
             />
           </div>
           <div className="flex items-center w-full mb-[2rem]">
             <p className="mr-auto text-2xl">Product Brand :</p>
             <Input
               type="text"
-              class="w-[60%]"
+              class="w-full"
               changed={(e) => onChangeHandler(e, "brand")}
               value={productData.brand}
               placeholder={""}
+              clicked={()=>{return}}
+              show=""
+              section="add"
             />
           </div>
           <div className="flex items-center  w-full mb-[2rem]">
             <p className="mr-auto text-2xl">Product Price:</p>
             <Input
               type="number"
-              class="w-[60%]"
+              class="w-full"
               changed={(e) => onChangeHandler(e, "price")}
               value={productData.price}
               placeholder={""}
+              clicked={()=>{return}}
+              show=""
+              section="add"
             />
           </div>
           <div className="flex items-center  w-full mb-[2rem]">

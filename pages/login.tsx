@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import { useMutation, useQuery } from "react-query";
-import { signUp, login, user } from "../api/requests/auth";
+import { useMutation } from "react-query";
+import { signUp, login } from "../api/requests/auth";
 import { signinReq, signupReq } from "../api/types/auth";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -18,13 +18,14 @@ const Login: NextPage = ({}: Props) => {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [signinState, setSigninState] = useState<signinReq>({
     email: "",
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
   const signupMutation = useMutation((body: signupReq) => signUp(body), {
-    onSuccess: (data) => {
+    onSuccess: () => {
       setIsLogin(true);
     },
     onError: (error) => {
@@ -37,14 +38,13 @@ const Login: NextPage = ({}: Props) => {
       setSigninState({ ...signinState, email: "", password: "" });
       const res: any = data;
       sessionStorage.setItem("token", res.data.accessToken);
-      router.back()
+      router.back();
     },
     onError: (error) => {
       const message: any = error;
       setErrorMessage(message.response.data.error);
     },
   });
-  
 
   const onChange = (e: any, type: string): void => {
     setErrorMessage("");
@@ -83,13 +83,21 @@ const Login: NextPage = ({}: Props) => {
           changed={(e) => onChange(e, "email")}
           value={signinState.email}
           class="w-[70%] m-auto   mb-8 "
+          clicked={() => {
+            return;
+          }}
+          show={""}
+          section=""
         />
         <Input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
           changed={(e) => onChange(e, "password")}
           value={signinState.password}
-          class="w-[70%] m-auto   mb-8 "
+          class="w-full m-auto   mb-8 "
+          clicked={() => setShowPassword(!showPassword)}
+          show={showPassword}
+          section=""
         />
       </>
     );
@@ -102,6 +110,11 @@ const Login: NextPage = ({}: Props) => {
           changed={(e) => onChange(e, "name")}
           value={signupState.name}
           class="w-[70%] m-auto  mb-8 "
+          clicked={() => {
+            return;
+          }}
+          show={""}
+          section=""
         />
         <Input
           type="email"
@@ -109,13 +122,21 @@ const Login: NextPage = ({}: Props) => {
           changed={(e) => onChange(e, "email")}
           value={signupState.email}
           class="w-[70%] m-auto   mb-8 "
+          clicked={() => {
+            return;
+          }}
+          show={""}
+          section=""
         />
         <Input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
           changed={(e) => onChange(e, "password")}
           value={signupState.password}
-          class="w-[70%] m-auto   mb-8 "
+          class="w-full m-auto   mb-8 "
+          clicked={() => setShowPassword(!showPassword)}
+          show={showPassword}
+          section=""
         />
       </>
     );
