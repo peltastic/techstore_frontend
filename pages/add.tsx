@@ -112,9 +112,9 @@ function AddProducts({}: Props) {
           <Dashboard username="pelz" title="Add Products" />
           <div className="w-[full] h-[30rem] relative">
             <div className=" text-white w-full absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
-              {isLoading ? <h1 className="text-center">Uploading...</h1> : null}
-              {isSuccess ? <h1 className="text-center">Uploaded!</h1> : null}
-              <h1 className="mb-6 text-red-700">{uploadErrMessage}</h1>
+              {upload.isLoading ? <h1 className="text-center">Uploading...</h1> : null}
+              {upload.isSuccess ? <h1 className="text-center">Uploaded!</h1> : null}
+              <h1 className="mb-6 text-center text-red-700">{uploadErrMessage}</h1>
               <h1 className="text-center">
                 Click on the button below to upload product to store after
                 filling the form
