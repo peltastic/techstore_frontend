@@ -7,6 +7,7 @@
   .Ops {
     width: 50%;
     clip-path: none;
+    height: 40vh;
     /* margin-top: 9rem; */
   }
   .Ops a {
@@ -52,6 +53,6 @@
 @media (max-width: 600px) {
     .Container {
         padding: 0 2rem;
-        margin-top: 8rem;
+        margin-top: 2rem;
     }
 }

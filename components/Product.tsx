@@ -119,7 +119,7 @@ function Product(props: Props) {
   }, []);
   return (
     <div
-      className={`${classes.Product} mb-8 pt-6 w-[30%] h-[30rem] cursor-pointer border text-white border-[#B3541E] relative mx-4`}
+      className={`${classes.Product} rounded-2xl mb-8 pt-6 w-[30%] h-[30rem] cursor-pointer border-[2px] text-white border-[#b3551e61] relative mx-4`}
     >
       <div
         className="h-[70%] "

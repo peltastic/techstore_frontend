@@ -36,7 +36,7 @@ function ProductType() {
   return (
     <div className="text-white">
       <Nav />
-      <div className="px-8 mt-24 flex w-full flex-wrap justify-center">
+      <div className={`${classes.Products} px-8 mt-24 flex w-full flex-wrap  mx-auto`} >
         {!isLoading ? (
           <>
             {products?.map((item: any, index: any) => {

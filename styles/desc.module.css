@@ -3,3 +3,13 @@
         margin-top: 12rem;
     }
 }
+
+@media (max-width: 500px) {
+        .ImageContainer {
+            width: 100%;
+        }
+        .DescContainer {
+            width: 100%;
+            text-align: center;
+        }
+}

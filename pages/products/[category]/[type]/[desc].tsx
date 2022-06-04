@@ -189,15 +189,15 @@ function Description({}: Props) {
       {showMessage ? <Messages className=" bg-red-500" name="Sign In" /> : null}
       <Nav />
       <div
-        className={`text-white mt-[7rem]  w-[90%] h-[80vh] flex flex-wrap ${styles.Container}`}
+        className={`text-white mt-[12rem]  w-[90%] h-[80vh] flex flex-wrap ${styles.Container}`}
       >
-        <div className="w-[50%] pl-5">
-          <div className="w-[50%] mx-auto">
-            <img src={data?.product_image} alt="" className="h-full" />
+        <div className={`${styles.ImageContainer} w-[70%] pl-5`}>
+          <div className="w-[60%] mx-auto">
+            <img src={data?.product_image} alt="" className="" />
           </div>
         </div>
 
-        <div className="w-[50%] relative">
+        <div className={`${styles.DescContainer} w-[30%] relative`}>
           <h1 className="text-3xl mb-6">{data?.name}</h1>
           <p className="text-xl">{data?.desc}</p>
           <p className="my-8 text-xl">
