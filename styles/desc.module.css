@@ -7,9 +7,20 @@
 @media (max-width: 500px) {
         .ImageContainer {
             width: 100%;
+            height: auto;
+        }
+        .ImageContainer div{
+            width: 100%;
+        }
+        .ImageContainer img {
+            margin: auto;
         }
         .DescContainer {
             width: 100%;
             text-align: center;
+            margin-top: -17rem;
+        }
+        .Container {
+           width: 100%;
         }
 }
