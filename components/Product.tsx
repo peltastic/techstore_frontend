@@ -119,39 +119,41 @@ function Product(props: Props) {
   }, []);
   return (
     <div
-      className={`${classes.Product} rounded-2xl mb-8 pt-6 w-[30%] h-[30rem] cursor-pointer border-[2px] text-white border-[#b3551e61] relative mx-4`}
+      className={`${classes.Product} ${classes.Glow}  mb-11 p-2 w-[30%] h-[35rem] cursor-pointer border-[2px] text-white border-[#ffffff3c] relative mx-4`}
     >
-      <div
-        className="h-[70%] "
-        onClick={() =>
-          router.push(`/products/${props.category}/${props.type}/${props.id}`)
-        }
-      >
-        <img src={props.image} className="h-full mx-auto block" />
-      </div>
-      <h1 className="text-center mt-[2rem] text-2xl">{props.name}</h1>
-      <div className=" w-full text-[1.5rem] flex absolute justify-center bottom-0 left-0 px-6 py-4 ">
-        <p className={`${cartCount ? "mr-auto" : null}`}>
-          N{totalPrice ? splitNumber(totalPrice) : splitNumber(props.price)}
-        </p>
-        {cartCount ? (
-          <div className=" w-[50%] justify-between flex items-center">
-            <button
-              onClick={decreaseCartHandler}
-              className={`${classes.CartButton} bg-[#B3541E] rounded-full p-[.1rem]`}
-              disabled={cartCount === 0}
-            >
-              <AiOutlineMinus />
-            </button>
-            <p>{cartCount}</p>
-            <button
-              onClick={increaseCartHandler}
-              className={`${classes.CartButton} bg-[#B3541E] rounded-full p-[.1rem]`}
-            >
-              <MdAdd />
-            </button>
-          </div>
-        ) : null}
+      <div className={`border-white py-8 h-full w-full border `}>
+        <div
+          className="h-[70%] "
+          onClick={() =>
+            router.push(`/products/${props.category}/${props.type}/${props.id}`)
+          }
+        >
+          <img src={props.image} className="h-full mx-auto block" />
+        </div>
+        <h1 className="text-center mt-[2rem] text-2xl">{props.name}</h1>
+        <div className=" w-full text-[1.5rem] flex absolute justify-center bottom-0 left-0 px-6 py-4 ">
+          <p className={`${cartCount ? "mr-auto" : null}`}>
+            N{totalPrice ? splitNumber(totalPrice) : splitNumber(props.price)}
+          </p>
+          {cartCount ? (
+            <div className=" w-[50%] justify-between flex items-center">
+              <button
+                onClick={decreaseCartHandler}
+                className={`${classes.CartButton} bg-[#B3541E] rounded-full p-[.1rem]`}
+                disabled={cartCount === 0}
+              >
+                <AiOutlineMinus />
+              </button>
+              <p>{cartCount}</p>
+              <button
+                onClick={increaseCartHandler}
+                className={`${classes.CartButton} bg-[#B3541E] rounded-full p-[.1rem]`}
+              >
+                <MdAdd />
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );

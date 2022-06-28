@@ -82,7 +82,7 @@ function Nav() {
     <>
       {showMessage ? <Messages className=" bg-red-500" name="Sign In" /> : null}
       <div
-        className={`${classes.NavMobileIcon}  z-50`}
+        className={`${classes.NavMobileIcon}  z-[80]`}
         onClick={() => setShowNav(!showNav)}
       >
         <div className={`${showNav ? classes.Top : null}`}></div>
@@ -97,10 +97,10 @@ function Nav() {
       />
       {showNav ? <Backdrop /> : null}
       <nav
-        className={`${classes.Nav} w-full  px-8 py-6  flex items-center text-white fixed top-0 left-0 z-20 bg-[#040303]`}
+        className={`${classes.Nav} w-full  px-16 py-11  flex items-center text-white fixed top-0 left-0 z-20 bg-[#040303]`}
       >
         <Image src={Logo} alt="" />
-        <ul className="flex m-auto text-[1.2rem]">
+        <ul className="flex m-auto text-[1.5rem]">
           <li className="mx-[4rem]">
             <Link href={"/"}>
               <a>Home</a>
@@ -130,7 +130,7 @@ function Nav() {
             <Link href={"/admin"}>
               <a>
                 <button
-                  className={`mr-10 rounded-3xl px-6 py-2 ${classes.Admin}`}
+                  className={`mr-10 text-2xl rounded-full px-6 py-2 ${classes.Admin}`}
                 >
                   Admin
                 </button>
@@ -140,10 +140,10 @@ function Nav() {
         </div>
       </nav>
       <div
-        className={`${classes.CartContainer} ml-auto fixed z-50 top-8 right-8 cursor-pointer`}
+        className={`${classes.CartContainer} ml-auto fixed z-50 top-[3.1rem] right-8 cursor-pointer`}
         onClick={cartHandler}
       >
-        <BsCart3 className={`${classes.Cart} text-2xl z-50 text-white`} />
+        <BsCart3 className={`${classes.Cart} text-4xl z-50 text-white`} />
         <div className="h-[1.5rem] w-[1.5rem] flex justify-center items-center absolute top-[-7px] right-[-7px] bg-[#B3541E] px-[.5px] py-[.5px] rounded-full">
           <p className=" text-white text-sm  text-center">{cartCount}</p>
         </div>

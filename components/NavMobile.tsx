@@ -13,7 +13,7 @@ function NavMobile(props: Props) {
     <div
       className={`${classes.NavMobile}  ${
         !props.show ? "-translate-x-full" : null
-      } transition-all fixed top-0 text-white w-[60%] bg-stone-800 z-40 h-screen `}
+      } transition-all fixed top-0 text-white w-[100%] bg-stone-800 z-[60] h-screen `}
     >
       <ul className="">
         <li>

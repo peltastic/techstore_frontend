@@ -9,7 +9,7 @@ function ProductLoader(props: Props) {
       {props.type === "product" ? (
         <div className={`${classes.ProductLoader} mx-4 my-2 items-center mb-24 flex justify-center flex-col w-[30%]`}>
           <div
-            className={`w-[50%] mx-4 mb-7 my-2 animate-pulse bg-slate-400 h-[15rem]`}
+            className={`${classes.MainLoader} w-[50%] mx-4 mb-7 my-2 animate-pulse bg-slate-400 h-[15rem]`}
           ></div>
           <div className="w-[70%] mx-4 my-2 animate-pulse bg-slate-700 h-[2rem]"></div>
           <div className="w-[30%] mx-4 my-2 animate-pulse bg-slate-700 h-[2rem]"></div>

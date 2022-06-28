@@ -1,6 +1,12 @@
 .Image {
   width: 100%;
 }
+.Glow {
+  border: 1px solid #ffffff;
+  box-shadow: 0 0 5px #fff, 0 0 .5px #fff, 0 0 .5px #fff, 0 0 .5px #ffffff,
+    0 0 1px #ffffff, 0 0 .5px #ffffff, 0 0 .5px #ffffff, 0 0 .5px #ffffff;
+}
+
 @media (max-width: 650px) {
   .Product {
     width: 60%;
@@ -15,20 +21,39 @@
     height: 40rem;
   }
 }
+@media (max-width: 400px) {
+  .Product {
+    width: 95%;
+    height: 40rem;
+  }
+}
 
 @media (max-width: 650px) {
   .ProductLoader {
-    width: 60%;
+    width: 90%;
+  }
+  .MainLoader{
+    width: 90%;
+    height: 30rem;
+  }
+}
+@media (max-width: 400px) {
+  .ProductLoader {
+    width: 100%;
+  }
+  .MainLoader{
+    width: 100%;
+    height: 30rem;
   }
 }
 @media (max-width: 550px) {
   .ProductLoader {
-    width: 80%;
+    width: 90%;
   }
 }
 @media (max-width: 650px) {
   .CartButton {
     font-size: 2rem;
-    padding: .2rem;
+    padding: 0.2rem;
   }
 }

@@ -3,11 +3,37 @@
     width: 40%;
   }
 }
-@media (max-width: 600px) {
+
+.OpsLeft {
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 20px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #ffffff,
+      0 0 10px #ffffff, 0 0 10px #ffffff, 0 0 10px #ffffff, 0 0 10px #ffffff;
+}
+.OpsRight {
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 20px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #ffffff,
+      0 0 10px #ffffff, 0 0 10px #ffffff, 0 0 10px #ffffff, 0 0 10px #ffffff;
+}
+@media (max-width: 800px) {
+    .OpsLeft {
+        border: 1px solid #ffffff;
+        box-shadow: 0 0 5px #fff, 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #ffffff,
+          0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff;
+    }
+    .OpsRight {
+        border: 1px solid #ffffff;
+        box-shadow: 0 0 5px #fff, 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #ffffff,
+          0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff;
+    }
+}
+
+@media (max-width: 800px) {
   .Ops {
-    width: 50%;
+    width: 70%;
     clip-path: none;
     height: 40vh;
+    margin-left: 0;
+    margin-right: 0;
     /* margin-top: 9rem; */
   }
   .Ops a {
@@ -20,16 +46,11 @@
         margin-right: 0;
     }
 }
-@media (max-width: 700px) {
-    .OpsLeft {
-        margin-right: -2rem;
-        margin-left: 0;
-    }
-}
+
 @media (max-width: 600px) {
     .OpsLeft {
         margin-right: 0;
-        width: 100%;
+        width: 90%;
         margin-bottom: 3rem;
     }
 }
@@ -43,16 +64,16 @@
 @media (max-width: 600px) {
     .OpsRight {
        margin-left: 0;
-       width: 100%;
+       width: 90%;
     }
     .OpsRight div {
         left: 30%;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .Container {
-        padding: 0 2rem;
-        margin-top: 2rem;
+        /* padding: 0 2rem; */
+        margin-top: 10rem;
     }
 }

@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 const Home: NextPage = () => {
   return (
     <div className="h-screen">
-      <Nav />
       <Header />
       <Body />
       <Footer />

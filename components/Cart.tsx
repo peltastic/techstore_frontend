@@ -114,19 +114,19 @@ function Cart(props: Props) {
   };
   return (
     <div
-      className={`${classes.Cart} w-[80%] mx-auto text-white flex items-center justify-between border mb-8 border-[#B3541E] h-[10rem] px-16 py-4`}
+      className={`relative ${classes.Cart} ${classes.Glow} w-[30%] h-[35rem] mx-auto text-white flex flex-col items-center border mb-8  px-16 py-12`}
     >
       <img
-        className="h-full cursor-pointer"
+        className="h-[60%] cursor-pointer"
         onClick={clickHandler}
         src={props.image}
         alt=""
       />
-      <p className="text-4xl cursor-pointer" onClick={clickHandler}>
+      <div className=" absolute bottom-8 flex flex-col items-center w-[70%]">
+      <p className="text-2xl mb-4 cursor-pointer" onClick={clickHandler}>
         {props.name}
       </p>
-      <div className="w-[30%] h-[90%] flex flex-col justify-between items-center">
-        <p className="text-4xl">
+        <p className="text-2xl mb-4">
           N
           {totalPrice
             ? splitNumber(totalPrice)
@@ -134,18 +134,18 @@ function Cart(props: Props) {
         </p>
         <div className="flex w-full justify-around items-center">
           <button
-            className="bg-[#B3541E] rounded-full p-1"
+            className={`${classes.Glow} rounded-full p-2 flex items-center justify-center`}
             onClick={decreaseCartHandler}
             disabled={currentCount === 0}
           >
-            <AiOutlineMinus className="text-3xl" />
+            <AiOutlineMinus className="text-2xl" />
           </button>
-          <p className="text-4xl">{currentCount}</p>
+          <p className="text-2xl">{currentCount}</p>
           <button
-            className="bg-[#B3541E] rounded-full p-1"
+            className={`${classes.Glow}  rounded-full flex items-center justify-center p-2`}
             onClick={increaseCartHandler}
           >
-            <MdAdd className="text-3xl" />
+            <MdAdd className="text-2xl" />
           </button>
         </div>
       </div>

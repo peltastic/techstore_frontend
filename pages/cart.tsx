@@ -1,5 +1,4 @@
 import Cart from "../components/Cart";
-import Nav from "../components/Nav";
 import { useQuery } from "react-query";
 import { getCart } from "../api/requests/cart";
 import { useSelector, useDispatch } from "react-redux";
@@ -53,14 +52,13 @@ function Carts({}: Props) {
   };
   return (
     <>
-      <Nav />
       <button
         disabled={!!checkout}
-        className="text-white text-2xl rounded-full bg-[#B3541E] fixed px-10 py-6 right-6 bottom-7"
+        className={`text-white text-2xl z-[50] rounded-full ${classes.Glow} bg-[#000] fixed px-10 py-6 right-6 bottom-7`}
       >
         Checkout {splitNumber(checkout)}
       </button>
-      <div className={`${classes.CartContainer} mt-[10rem] mx-32`}>
+      <div className={`${classes.CartContainer} flex flex-wrap justify-start mt-[10rem] w-full `}>
         {cartData.length > 0 ? (
           <>
             {cartData.map((item, index) => {

@@ -1,13 +1,9 @@
 import { NextPage } from "next";
-import Nav from "../components/Nav";
 import ProductOps from "../components/ProductOps";
 
-type Props = {};
-
-const Products: NextPage = (props: Props) => {
+const Products: NextPage = () => {
   return (
     <>
-      <Nav />
       <ProductOps
         class_left="phones"
         class_right="laptops"

@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: #040303;
+  background-color: #000000;
   font-family: "Fira Sans", sans-serif;
   padding: 0;
   margin: 0;
@@ -27,11 +27,6 @@ html {
 @media (max-width: 800px) {
   html {
     font-size: 50%;
-  }
-}
-@media (max-width: 550px) {
-  html {
-    font-size: 40%;
   }
 }
 
@@ -48,12 +43,8 @@ a {
   background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
     url("../assets/bg1.jpg");
   background-position: center;
-  background-size: 120%;
-  transition: all .5s;
-}
-.phones:hover {
-  background-size: 130%;
-  opacity: 1;
+  background-size: cover;
+  transition: all 0.5s;
 }
 
 @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
@@ -66,13 +57,10 @@ a {
   background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
     url("../assets/bg2.jpg");
   background-position: center;
-  background-size: 120%;
-  transition: all .5s;
+  background-size: cover;
+  transition: all 0.5s;
 }
-.laptops:hover {
-  background-size: 130%;
-  opacity: 1;
-}
+
 @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
   .laptops {
     -webkit-clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
@@ -83,12 +71,8 @@ a {
   background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
     url("../assets/bg3.jpg");
   background-position: center;
-  background-size: 120%;
-  transition: all .5s;
-}
-.phones_gaming:hover {
-  background-size: 130%;
-  opacity: 1;
+  background-size: cover;
+  transition: all 0.5s;
 }
 
 @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
@@ -101,14 +85,9 @@ a {
   background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
     url("../assets/bg4.jpg");
   background-position: center;
-  background-size: 120%;
-  transition: all .5s;
+  background-size: cover;
+  transition: all 0.5s;
 }
-.phones_regular:hover {
-  background-size: 130%;
-  opacity: 1;
-}
-
 
 @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
   .phones_regular {
@@ -120,14 +99,9 @@ a {
   background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
     url("../assets/bg5.jpg");
   background-position: center;
-  background-size: 120%;
-  transition: all .5s;
+  background-size: cover;
+  transition: all 0.5s;
 }
-.laptops_gaming:hover {
-  background-size: 130%;
-  opacity: 1;
-}
-
 
 @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
   .laptops_gaming {
@@ -139,14 +113,9 @@ a {
   background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
     url("../assets/bg6.jpg");
   background-position: center;
-  background-size: 120%;
-  transition: all .5s;
+  background-size: cover;
+  transition: all 0.5s;
 }
-.laptops_regular:hover {
-  background-size: 130%;
-  opacity: 1;
-}
-
 
 @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
   .laptops_regular {

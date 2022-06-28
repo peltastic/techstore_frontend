@@ -1,5 +1,4 @@
 import Dashboard from "../components/Dashboard";
-import Nav from "../components/Nav";
 import Input from "../components/Input";
 import classes from "../styles/addProduct.module.css";
 import { IoAddSharp } from "react-icons/io5";
@@ -106,7 +105,6 @@ function AddProducts({}: Props) {
 
   return (
     <>
-      <Nav />
       <div className={`flex ${classes.Container} flex-wrap w-full mt-[7.5rem]`}>
         <div className={`${classes.DashboardContainer} w-[50%]`}>
           <Dashboard username="pelz" title="Add Products" />
