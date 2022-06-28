@@ -94,6 +94,7 @@ function Nav() {
         show={showNav}
         isAdmin={isAdmin}
         userId={!!userData.userId}
+        clicked={() =>setShowNav(!showNav)}
       />
       {showNav ? <Backdrop /> : null}
       <nav

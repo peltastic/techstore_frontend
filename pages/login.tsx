@@ -82,7 +82,7 @@ const Login: NextPage = ({}: Props) => {
           placeholder="Email"
           changed={(e) => onChange(e, "email")}
           value={signinState.email}
-          class="w-[70%] m-auto   mb-8 "
+          class="w-[90%] m-auto   mb-8 "
           clicked={() => {
             return;
           }}
@@ -94,7 +94,7 @@ const Login: NextPage = ({}: Props) => {
           placeholder="Password"
           changed={(e) => onChange(e, "password")}
           value={signinState.password}
-          class="w-full m-auto   mb-8 "
+          class="w-[90%] m-auto   mb-8 "
           clicked={() => setShowPassword(!showPassword)}
           show={showPassword}
           section=""
@@ -109,7 +109,7 @@ const Login: NextPage = ({}: Props) => {
           placeholder="Username"
           changed={(e) => onChange(e, "name")}
           value={signupState.name}
-          class="w-[70%] m-auto  mb-8 "
+          class="w-[90%] m-auto  mb-8 "
           clicked={() => {
             return;
           }}
@@ -121,7 +121,7 @@ const Login: NextPage = ({}: Props) => {
           placeholder="Email"
           changed={(e) => onChange(e, "email")}
           value={signupState.email}
-          class="w-[70%] m-auto   mb-8 "
+          class="w-[90%] m-auto   mb-8 "
           clicked={() => {
             return;
           }}
@@ -133,7 +133,7 @@ const Login: NextPage = ({}: Props) => {
           placeholder="Password"
           changed={(e) => onChange(e, "password")}
           value={signupState.password}
-          class="w-full m-auto   mb-8 "
+          class="w-[90%] m-auto   mb-8 "
           clicked={() => setShowPassword(!showPassword)}
           show={showPassword}
           section=""
@@ -145,17 +145,17 @@ const Login: NextPage = ({}: Props) => {
   const activeStyle: string = " border-[#B3541E] border border-b-0 z-10";
   return (
     <div className="h-screen flex text-white ">
-      <div className={` w-[50%] ${classes.LoginImage}`}></div>
+      <div className={ `w-[50%] ${classes.LoginImage}`}></div>
       <div className={`${classes.Login} w-[50%] px-8 my-auto`}>
         <div className=" flex justify-center ">
           <button
-            className={`px-6 py-3${isLogin ? activeStyle : null}`}
+            className={` text-2xl sm:text-base px-6 py-3${isLogin ? activeStyle : null}`}
             onClick={() => setIsLogin(true)}
           >
             LOGIN
           </button>
           <button
-            className={`px-6 py-3 ${!isLogin ? activeStyle : null}`}
+            className={` text-2xl sm:text-base px-6 py-3 ${!isLogin ? activeStyle : null}`}
             onClick={() => setIsLogin(false)}
           >
             SIGN UP

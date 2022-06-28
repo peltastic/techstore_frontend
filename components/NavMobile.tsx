@@ -6,6 +6,7 @@ type Props = {
   show: boolean;
   isAdmin: boolean;
   userId: boolean;
+  clicked?: () => void;
 };
 
 function NavMobile(props: Props) {
@@ -18,18 +19,18 @@ function NavMobile(props: Props) {
       <ul className="">
         <li>
           <Link href={"/"}>
-            <a>Home</a>
+            <a onClick={props.clicked}>Home</a>
           </Link>
         </li>
         <li>
           <Link href={"/products"}>
-            <a>Products</a>
+            <a onClick={props.clicked}>Products</a>
           </Link>
         </li>
         {!props.userId ? (
           <li>
             <Link href={"/login"}>
-              <a>Sign In</a>
+              <a onClick={props.clicked}>Sign In</a>
             </Link>
           </li>
         ) : (

@@ -23,12 +23,14 @@
 
 @media (max-width: 600px) {
   .HeaderImg {
-    display: none;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
   }
 }
 @media (max-width: 1000px) {
   .Heading {
-    margin-left: 2rem;
     width: 60%;
   }
   .Heading h1 {
@@ -38,18 +40,14 @@
     font-size: 1rem;
   }
 }
-@media (max-width: 800px) {
-  .Heading {
-    margin-top: 20%;
-  }
-}
+
 @media (max-width: 600px) {
   .Heading {
     width: 100%;
     margin: 0;
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 45%;
     transform: translate(0, -50%);
     text-align: center;
   }
@@ -64,8 +62,9 @@
     margin-top: 4rem;
   }
   .Header {
-    height: 80vh;
+    height: 100vh;
     position: relative;
+    flex-wrap: wrap;
   }
 }
 

@@ -4,12 +4,22 @@
   background-size: cover;
 }
 
+@media (max-width: 1000px) {
+  .LoginImage {
+    width: 40%;
+  }
+}
 @media (max-width: 650px) {
   .LoginImage {
     display: none;
   }
 }
 
+@media (max-width: 1000px) {
+    .Login {
+      width: 60%;
+    }
+}
 @media (max-width: 650px) {
     .Login {
       width: 100%;
