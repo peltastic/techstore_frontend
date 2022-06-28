@@ -168,7 +168,7 @@ const Login: NextPage = ({}: Props) => {
               <input
                 type="submit"
                 name="Next"
-                className="cursor-pointer m-auto block border rounded-3xl px-5 py-2"
+                className="cursor-pointer m-auto block border text-3xl md:text-2xl rounded-3xl px-5 py-2"
               />
             </form>
           </div>
