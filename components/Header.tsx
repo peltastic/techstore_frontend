@@ -14,11 +14,11 @@ function Header({}: Props) {
         <div className=" mx-auto w-full">
         <Heading />
         </div>
-        <p className={`-[1.5rem] italic ${classes.Glow}`}>
+        <p className={`text-[1.5rem] italic ${classes.Glow}`}>
           your one stop online shop for tech gadgets
         </p>
         <Link href={"/products"}>
-          <a className=" mt-[5rem] flex items-center font-bold text-[#B3541E] bg-white border-none py-4 px-6 text-lg rounded-3xl w-[14rem]">
+          <a className={`${classes.BorderGlow} mt-[5rem] flex items-center font-bold text-[#ffffff] py-6 md:py-4 px-6 text-2xl md:text-lg rounded-3xl w-[20rem] md:w-[14rem]`}>
             Check Products
             <FiArrowRight className="ml-[.5rem]" />
           </a>

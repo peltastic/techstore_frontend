@@ -29,9 +29,9 @@ const Heading = () => {
         <motion.svg
           initial="hidden"
           animate={controls}
-          width="689"
+          width="789"
           height="134"
-          viewBox="0 0 1289 134"
+          viewBox="0 0 1589 134"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -41,7 +41,7 @@ const Heading = () => {
               custom={1.5}
               d="M564.523 12.0022L564.477 123.223"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -51,7 +51,7 @@ const Heading = () => {
               x2="611"
               y2="12"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
           </g>
           <g filter="url(#filter1_d_109_51)">
@@ -63,7 +63,7 @@ const Heading = () => {
               x2="813"
               y2="123.223"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -73,7 +73,7 @@ const Heading = () => {
               x2="883.091"
               y2="17.9105"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -83,7 +83,7 @@ const Heading = () => {
               x2="882.704"
               y2="120.838"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -93,7 +93,7 @@ const Heading = () => {
               x2="863"
               y2="64.9275"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
           </g>
           <g filter="url(#filter2_d_109_51)">
@@ -105,7 +105,7 @@ const Heading = () => {
               x2="52.4765"
               y2="123.223"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -115,7 +115,7 @@ const Heading = () => {
               x2="99"
               y2="12"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -125,7 +125,7 @@ const Heading = () => {
               x2="143"
               y2="117.223"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -135,7 +135,7 @@ const Heading = () => {
               x2="213.091"
               y2="11.9105"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -145,7 +145,7 @@ const Heading = () => {
               x2="212.704"
               y2="114.838"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -155,7 +155,7 @@ const Heading = () => {
               x2="193"
               y2="58.9275"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -165,7 +165,7 @@ const Heading = () => {
               x2="327"
               y2="121.223"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -175,7 +175,7 @@ const Heading = () => {
               x2="385"
               y2="120.223"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.line
               variants={draw}
@@ -185,14 +185,14 @@ const Heading = () => {
               x2="380"
               y2="61"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.path
               variants={draw}
               custom={1.5}
               d="M295 117C265.177 117 241 95.9187 241 61.92C241 27.9214 265.177 9 295 9"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
           </g>
           <g filter="url(#filter3_d_109_51)">
@@ -201,14 +201,14 @@ const Heading = () => {
               custom={1.5}
               d="M475.82 64.137C457.489 55.2047 447.86 37.2266 454.314 23.9818C460.768 10.737 480.86 7.24107 499.191 16.1734"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.path
               variants={draw}
               custom={2.5}
               d="M474.459 64.0079C492.669 73.1823 501.954 91.2353 495.198 104.33C488.442 117.425 468.203 120.604 449.993 111.429"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
           </g>
           <g filter="url(#filter4_d_109_51)">
@@ -217,8 +217,8 @@ const Heading = () => {
               custom={1.5}
               d="M692 66C692 80.8104 687.675 94.0121 680.932 103.385C674.185 112.766 665.304 118 656 118C646.696 118 637.815 112.766 631.068 103.385C624.325 94.0121 620 80.8104 620 66C620 51.1896 624.325 37.9879 631.068 28.6146C637.815 19.2336 646.696 14 656 14C665.304 14 674.185 19.2336 680.932 28.6146C687.675 37.9879 692 51.1896 692 66Z"
               stroke="white"
-              stroke-width="10"
-              shape-rendering="crispEdges"
+              strokeWidth="20"
+              shapeRendering="crispEdges"
             />
           </g>
           <g filter="url(#filter5_d_109_51)">
@@ -227,21 +227,21 @@ const Heading = () => {
               custom={1.5}
               d="M733.159 74.3582L772.893 120.642"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.path
               variants={draw}
               custom={1.5}
               d="M728.047 10L728 121.22"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
             <motion.path
               variants={draw}
               custom={1.5}
               d="M728 71C752.853 71 773 58.464 773 43C773 27.536 752.853 15 728 15"
               stroke="white"
-              stroke-width="10"
+              strokeWidth="20"
             />
           </g>
           <defs>
@@ -252,9 +252,9 @@ const Heading = () => {
               width="104"
               height="124.225"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -287,9 +287,9 @@ const Heading = () => {
               width="83.1525"
               height="121.838"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -324,9 +324,9 @@ const Heading = () => {
               width="395.047"
               height="127.225"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -359,9 +359,9 @@ const Heading = () => {
               width="63.1184"
               height="123.426"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -394,9 +394,9 @@ const Heading = () => {
               width="90"
               height="122"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -429,9 +429,9 @@ const Heading = () => {
               width="63"
               height="121.901"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -461,7 +461,7 @@ const Heading = () => {
         </motion.svg>
       </div>
       <div className={`${classes.HeadingLg}`}>
-      <motion.svg
+        <motion.svg
           initial="hidden"
           animate={controls}
           width="389"
@@ -476,7 +476,7 @@ const Heading = () => {
               custom={1.5}
               d="M564.523 12.0022L564.477 123.223"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -486,7 +486,7 @@ const Heading = () => {
               x2="611"
               y2="12"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
           </g>
           <g filter="url(#filter1_d_109_51)">
@@ -498,7 +498,7 @@ const Heading = () => {
               x2="813"
               y2="123.223"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -508,7 +508,7 @@ const Heading = () => {
               x2="883.091"
               y2="17.9105"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -518,7 +518,7 @@ const Heading = () => {
               x2="882.704"
               y2="120.838"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -528,7 +528,7 @@ const Heading = () => {
               x2="863"
               y2="64.9275"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
           </g>
           <g filter="url(#filter2_d_109_51)">
@@ -540,7 +540,7 @@ const Heading = () => {
               x2="52.4765"
               y2="123.223"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -550,7 +550,7 @@ const Heading = () => {
               x2="99"
               y2="12"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -560,7 +560,7 @@ const Heading = () => {
               x2="143"
               y2="117.223"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -570,7 +570,7 @@ const Heading = () => {
               x2="213.091"
               y2="11.9105"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -580,7 +580,7 @@ const Heading = () => {
               x2="212.704"
               y2="114.838"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -590,7 +590,7 @@ const Heading = () => {
               x2="193"
               y2="58.9275"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -600,7 +600,7 @@ const Heading = () => {
               x2="327"
               y2="121.223"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -610,7 +610,7 @@ const Heading = () => {
               x2="385"
               y2="120.223"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.line
               variants={draw}
@@ -620,14 +620,14 @@ const Heading = () => {
               x2="380"
               y2="61"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.path
               variants={draw}
               custom={1.5}
               d="M295 117C265.177 117 241 95.9187 241 61.92C241 27.9214 265.177 9 295 9"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
           </g>
           <g filter="url(#filter3_d_109_51)">
@@ -636,14 +636,14 @@ const Heading = () => {
               custom={1.5}
               d="M475.82 64.137C457.489 55.2047 447.86 37.2266 454.314 23.9818C460.768 10.737 480.86 7.24107 499.191 16.1734"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.path
               variants={draw}
               custom={2.5}
               d="M474.459 64.0079C492.669 73.1823 501.954 91.2353 495.198 104.33C488.442 117.425 468.203 120.604 449.993 111.429"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
           </g>
           <g filter="url(#filter4_d_109_51)">
@@ -652,8 +652,8 @@ const Heading = () => {
               custom={1.5}
               d="M692 66C692 80.8104 687.675 94.0121 680.932 103.385C674.185 112.766 665.304 118 656 118C646.696 118 637.815 112.766 631.068 103.385C624.325 94.0121 620 80.8104 620 66C620 51.1896 624.325 37.9879 631.068 28.6146C637.815 19.2336 646.696 14 656 14C665.304 14 674.185 19.2336 680.932 28.6146C687.675 37.9879 692 51.1896 692 66Z"
               stroke="white"
-              stroke-width="15"
-              shape-rendering="crispEdges"
+              strokeWidth="15"
+              shapeRendering="crispEdges"
             />
           </g>
           <g filter="url(#filter5_d_109_51)">
@@ -662,21 +662,21 @@ const Heading = () => {
               custom={1.5}
               d="M733.159 74.3582L772.893 120.642"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.path
               variants={draw}
               custom={1.5}
               d="M728.047 10L728 121.22"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
             <motion.path
               variants={draw}
               custom={1.5}
               d="M728 71C752.853 71 773 58.464 773 43C773 27.536 752.853 15 728 15"
               stroke="white"
-              stroke-width="15"
+              strokeWidth="15"
             />
           </g>
           <defs>
@@ -687,9 +687,9 @@ const Heading = () => {
               width="104"
               height="124.225"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -722,9 +722,9 @@ const Heading = () => {
               width="83.1525"
               height="121.838"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -759,9 +759,9 @@ const Heading = () => {
               width="395.047"
               height="127.225"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -794,9 +794,9 @@ const Heading = () => {
               width="63.1184"
               height="123.426"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -829,9 +829,9 @@ const Heading = () => {
               width="90"
               height="122"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -864,9 +864,9 @@ const Heading = () => {
               width="63"
               height="121.901"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
