@@ -20,7 +20,7 @@ function ProductOps(props: Props) {
         <div className="absolute text-white top-[50%] left-[30%] -translate-x-[50%] -translate-y-[50%]">
           <h1 className="text-[2rem] mb-[2rem]">{props.name_left}</h1>
           <Link href={props.route_left}>
-            <a className="flex font-bold text-[1.2rem] items-center bg-white text-[#B3541E] px-[1.2rem] rounded-[2rem] py-[.5rem]">
+            <a className={`${classes.Glow} flex font-bold text-[1.2rem] items-center bg-transparent px-[2rem] rounded-[2rem] py-[.7rem]`}>
               Next
               <FiArrowRight className="ml-2" />
             </a>
@@ -33,7 +33,7 @@ function ProductOps(props: Props) {
         <div className="absolute text-white top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
           <h1 className="text-[2rem] mb-[2rem]">{props.name_right}</h1>
           <Link href={props.route_right}>
-            <a className="flex font-bold text-[1.2rem] items-center bg-white text-[#B3541E] px-[1.2rem] rounded-[2rem] py-[.5rem]">
+            <a className={`${classes.Glow} flex justify-center font-bold text-[1.2rem] items-center bg-transparent text-[#ffffff] px-[2rem] rounded-[2rem] py-[.7rem]`}>
               Next
               <FiArrowRight className="ml-2" />
             </a>

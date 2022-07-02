@@ -36,7 +36,11 @@ function ProductType() {
   return (
     <div className="text-white">
       <Nav />
-      <div className={`${classes.Products} px-8 mt-[10rem] flex w-full flex-wrap  mx-auto`} >
+      <div
+        className={`${classes.Products} ${
+          isLoading ? "justify-center" : ""
+        } px-8 mt-[10rem] flex flex-wrap w-full mx-auto`}
+      >
         {!isLoading ? (
           <>
             {products?.map((item: any, index: any) => {
@@ -55,12 +59,17 @@ function ProductType() {
           </>
         ) : (
           <>
-            <ProductLoader type="product"/>
-            <ProductLoader type="product"/>
-            <ProductLoader type="product"/>
-            <ProductLoader type="product"/>
-            <ProductLoader type="product"/>
-            <ProductLoader type="product"/>
+            <ProductLoader />
+
+            <ProductLoader />
+
+            <ProductLoader />
+
+            <ProductLoader />
+
+            <ProductLoader />
+
+            <ProductLoader />
           </>
         )}
       </div>

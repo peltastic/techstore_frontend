@@ -3,14 +3,14 @@ type Props = {};
 
 function Footer({}: Props) {
   return (
-    <div className="flex  sm:px-40 px-2 py-6 w-full">
-      <h1 className="text-[2rem] mr-auto stroke-h text-[#B3541E]">
+    <div className="flex flex-col sm:flex-row px-12 sm:px-40 py-10 w-full">
+      <h1 className="text-[2rem] mb-5 sm:mb-0 glow mr-auto">
         TECH STORE
       </h1>
-      <div className="flex items-center text-[#B3541E] text-3xl">
-        <BsInstagram className="mx-[2rem] cursor-pointer" />
-        <BsTwitter className="mx-[2rem] cursor-pointer" />
-        <BsReddit className="mx-[2rem] cursor-pointer" />
+      <div className="flex glow items-center text-2xl">
+       <p className="px-4">INSTAGRAM</p>
+       <p className="px-4">TWITTER</p>
+       <p className="px-4">YOUTUBE</p>
       </div>
     </div>
   );

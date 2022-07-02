@@ -13,6 +13,11 @@
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #b3541e;
   }
+  .glow {
+    color: #e7e4e4;
+    text-shadow: 0 0 5px #fff, 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #ffffff,
+      0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff;
+  }
 }
 
 body {

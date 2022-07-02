@@ -119,7 +119,7 @@ function Product(props: Props) {
   }, []);
   return (
     <div
-      className={`${classes.Product} ${classes.Glow}  mb-11 p-2 w-[30%] h-[35rem] cursor-pointer border-[2px] text-white border-[#ffffff3c] relative mx-4`}
+      className={`${classes.Product} ${classes.Glow}  mb-11 p-2 w-[30%] h-[35rem] cursor-pointer border-[2px] text-white border-[#ffffff3c] relative mx-4 ml-10`}
     >
       <div className={`border-white py-8 h-full w-full border `}>
         <div
