@@ -58,9 +58,9 @@ function Carts({}: Props) {
       >
         Checkout {splitNumber(checkout)}
       </button>
-      <div className={`${classes.CartContainer} flex flex-wrap justify-start mt-[10rem] w-full `}>
+      <div className={`${classes.CartContainer} flex flex-wrap mt-[10rem] w-full `}>
         {cartData.length > 0 ? (
-          <>
+          <div className="flex flex-wrap justify-start w-full">
             {cartData.map((item, index) => {
               return (
                 <Cart
@@ -77,16 +77,14 @@ function Carts({}: Props) {
                 />
               );
             })}
-          </>
+          </div>
         ) : (
           <>
             {isLoading ? (
-              <>
-                <ProductLoader type="cart" />
-                <ProductLoader type="cart" />
-                <ProductLoader type="cart" />
-                <ProductLoader type="cart" />
-              </>
+              <div className="fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+                <ProductLoader/>
+                <p className="text-white glow text-center -ml-[3.5rem] mt-7 text-xl">Loading...</p>
+              </div>
             ) : (
               <div className="text-white fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
                 <BsCart3 className="text-[30rem]" />

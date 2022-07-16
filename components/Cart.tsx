@@ -114,7 +114,7 @@ function Cart(props: Props) {
   };
   return (
     <div
-      className={`relative ${classes.Cart} ${classes.Glow} w-[30%] h-[35rem] mx-auto text-white flex flex-col items-center border mb-8  px-16 py-12`}
+      className={`relative ${classes.Cart} ${classes.Glow} w-[30%] h-[35rem] mx-auto text-white mb-14 flex flex-col items-center border  px-16 py-12`}
     >
       <img
         className="h-[60%] cursor-pointer"

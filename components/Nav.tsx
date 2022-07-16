@@ -14,49 +14,20 @@ import Messages from "../components/Messages";
 import NavMobile from "./NavMobile";
 import Backdrop from "./Backdrop";
 
-function Nav() {
+type Props = {
+  admin: boolean
+}
+
+function Nav(props: Props) {
   const dispatch = useDispatch();
 
-  let token: string;
 
   const userData = useSelector((state: RootState) => state.user.userInfo);
   const cartCount = useSelector((state: RootState) => state.user.cartCount);
   const router = useRouter();
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [showNav, setShowNav] = useState<boolean>(false);
 
-  const { refetch } = useQuery("user", () => user(token), {
-    enabled: false,
-    onSuccess: (data) => {
-      if (data) {
-        const res = data.data;
-        dispatch(
-          setUserInfo({
-            username: res.user_name,
-            userId: res.user_id,
-            email: res.email,
-            userRole: res.user_role,
-          })
-        );
-        dispatch(setInitialCartCount(res.cart_count));
-      }
-    },
-  });
-  useEffect(() => {
-    if (userData.userRole === 5180) {
-      setIsAdmin(true);
-    }
-  }, [userData]);
-  useEffect(() => {
-    const tokenRes = sessionStorage.getItem("token");
-    if (tokenRes) {
-      token = tokenRes;
-    }
-    if (token) {
-      refetch();
-    }
-  }, []);
   const logout = () => {
     sessionStorage.removeItem("token");
     dispatch(
@@ -92,7 +63,7 @@ function Nav() {
       <NavMobile
         logout={logout}
         show={showNav}
-        isAdmin={isAdmin}
+        isAdmin={props.admin}
         userId={!!userData.userId}
         clicked={() =>setShowNav(!showNav)}
       />
@@ -127,7 +98,7 @@ function Nav() {
           ) : null}
         </ul>
         <div className="flex items-center">
-          {isAdmin && userData.userId ? (
+          {props.admin && userData.userId ? (
             <Link href={"/admin"}>
               <a>
                 <button

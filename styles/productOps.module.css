@@ -27,6 +27,7 @@
       0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff;
   }
   .OpsRight {
+    margin-top: -20rem;
     border: 1px solid #ffffff;
     box-shadow: 0 0 5px #fff, 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #ffffff,
       0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff;
@@ -36,7 +37,7 @@
 @media (max-width: 800px) {
   .Ops {
     width: 70%;
-    clip-path: none;
+    /* clip-path: none; */
     height: 40vh;
     margin-left: 0;
     margin-right: 0;
@@ -71,15 +72,11 @@
   .OpsRight {
     margin-left: 0;
     width: 90%;
+    margin-top: -8rem;
   }
   .OpsRight div {
     left: 30%;
   }
 }
 
-@media (max-width: 800px) {
-  .Container {
-    /* padding: 0 2rem; */
-    margin-top: 5rem;
-  }
-}
+

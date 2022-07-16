@@ -15,6 +15,7 @@ import {
 } from "../api/requests/cart";
 import { AiOutlineMinus } from "react-icons/ai";
 import classes from "../styles/product.module.css";
+import Button from "../components/Button";
 
 type Props = {
   name: string;

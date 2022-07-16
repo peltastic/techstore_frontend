@@ -4,13 +4,17 @@ import { signUp, login } from "../api/requests/auth";
 import { signinReq, signupReq } from "../api/types/auth";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import {setToken} from "../redux/reducers/user"
+import { useDispatch } from "react-redux";
 import Input from "../components/Input";
 import classes from "../styles/login.module.css";
 import Spinner from "../components/Spinner";
+import Button from "../components/Button"
 
 type Props = {};
 
 const Login: NextPage = ({}: Props) => {
+  const dispatch = useDispatch()
   const router = useRouter();
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [signupState, setSignupState] = useState<signupReq>({
@@ -38,6 +42,7 @@ const Login: NextPage = ({}: Props) => {
       setSigninState({ ...signinState, email: "", password: "" });
       const res: any = data;
       sessionStorage.setItem("token", res.data.accessToken);
+      dispatch(setToken(res.data.accessToken))
       router.back();
     },
     onError: (error) => {
@@ -165,11 +170,7 @@ const Login: NextPage = ({}: Props) => {
           <div className="text-white">
             <form onSubmit={onSubmit}>
               {content}
-              <input
-                type="submit"
-                name="Next"
-                className="cursor-pointer m-auto block border text-3xl md:text-2xl rounded-3xl px-5 py-2"
-              />
+              <Button content="Submit" class=" mx-auto px-12 py-3 rounded-full " />
             </form>
           </div>
           {errorMessage ? (

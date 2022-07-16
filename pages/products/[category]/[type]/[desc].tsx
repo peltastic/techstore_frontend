@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Nav from "../../../../components/Nav";
+import Footer from "../../../../components/Footer";
 import { MdAdd } from "react-icons/md";
 import { useQuery, useMutation } from "react-query";
 import { splitNumber } from "../../../../utils/functions";
@@ -187,9 +187,8 @@ function Description({}: Props) {
   return (
     <>
       {showMessage ? <Messages className=" bg-red-500" name="Sign In" /> : null}
-      <Nav />
       <div
-        className={`text-white mt-[12rem]  w-[90%] h-[80vh] flex flex-wrap ${styles.Container}`}
+        className={`text-white mt-[12rem] border mx-auto w-[90%] flex flex-wrap ${styles.Container}`}
       >
         <div className={`${styles.ImageContainer} w-[70%] pl-5`}>
           <div className="w-[60%] mx-auto">
@@ -230,6 +229,10 @@ function Description({}: Props) {
             </div>
           ) : null}
         </div>
+      </div>
+      <div className="absolute bottom-0 w-full">
+
+        <Footer />
       </div>
     </>
   );

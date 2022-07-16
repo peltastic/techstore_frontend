@@ -35,7 +35,6 @@ function ProductType() {
 
   return (
     <div className="text-white">
-      <Nav />
       <div
         className={`${classes.Products} ${
           isLoading ? "justify-center" : ""
@@ -58,19 +57,10 @@ function ProductType() {
             })}
           </>
         ) : (
-          <>
+          <div className="fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
             <ProductLoader />
-
-            <ProductLoader />
-
-            <ProductLoader />
-
-            <ProductLoader />
-
-            <ProductLoader />
-
-            <ProductLoader />
-          </>
+            <p className="text-center -ml-[4rem] mt-8 glow text-xl">Loading...</p>
+          </div>
         )}
       </div>
     </div>
