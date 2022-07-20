@@ -18,6 +18,11 @@
     text-shadow: 0 0 5px #fff, 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #ffffff,
       0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff;
   }
+  .glow-border {
+    border: #e7e4e4;
+    box-shadow: 0 0 4px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #ffffff,
+      0 0 2px #ffffff, 0 0 2px #ffffff, 0 0 2px #ffffff, 0 0 2px #ffffff;
+  }
 }
 
 body {
@@ -42,121 +47,4 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-.phones {
-  background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
-    url("../assets/bg1.jpg");
-  background-position: center;
-  background-size: cover;
-  transition: all 0.5s;
-}
-
-@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-  .phones {
-    -webkit-clip-path: polygon(0 0%, 100% 0, 79% 100%, 0% 100%);
-    clip-path: polygon(0 0%, 100% 0, 79% 100%, 0% 100%);
-  }
-}
-
-@media (max-width: 800px) {
-  .phones {
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
-  }
-}
-.laptops {
-  background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
-    url("../assets/bg2.jpg");
-  background-position: center;
-  background-size: cover;
-  transition: all 0.5s;
-}
-
-@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-  .laptops {
-    -webkit-clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
-    clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
-  }
-}
-@media (max-width: 800px) {
-  .laptops {
-    -webkit-clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
-    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
-
-  }
-}
-.phones_gaming {
-  background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
-    url("../assets/bg3.jpg");
-  background-position: center;
-  background-size: cover;
-  transition: all 0.5s;
-}
-
-@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-  .phones_gaming {
-    -webkit-clip-path: polygon(0% 0, 100% 0, 79% 100%, 0 100%);
-    clip-path: polygon(0% 0, 100% 0, 79% 100%, 0 100%);
-  }
-}
-
-.phones_regular {
-  background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
-    url("../assets/bg4.jpg");
-  background-position: center;
-  background-size: cover;
-  transition: all 0.5s;
-}
-
-@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-  .phones_regular {
-    -webkit-clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
-    clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
-  }
-}
-.laptops_gaming {
-  background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
-    url("../assets/bg5.jpg");
-  background-position: center;
-  background-size: cover;
-  transition: all 0.5s;
-}
-
-@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-  .laptops_gaming {
-    -webkit-clip-path: polygon(0% 0, 100% 0, 79% 100%, 0 100%);
-    clip-path: polygon(0% 0, 100% 0, 79% 100%, 0 100%);
-  }
-}
-
-@media (max-width: 800px) {
-  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-    .laptops_gaming {
-      -webkit-clip-path: polygon(0 0, 100% 0, 100% 84%, 0% 100%);
-      clip-path: polygon(0 0, 100% 0, 100% 84%, 0% 100%);
-    }
-  }
-}
-.laptops_regular {
-  background-image: linear-gradient(105deg, rgba(79, 74, 74, 0.398), #000),
-    url("../assets/bg6.jpg");
-  background-position: center;
-  background-size: cover;
-  transition: all 0.5s;
-}
-
-@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-  .laptops_regular {
-    -webkit-clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
-    clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
-  }
-}
-@media (max-width: 800px) {
-  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-    .laptops_gaming {
-      -webkit-clip-path: polygon(0 0, 100% 0, 100% 84%, 0% 100%);
-      clip-path: polygon(0 0, 100% 0, 100% 84%, 0% 100%);
-    }
-  }
 }

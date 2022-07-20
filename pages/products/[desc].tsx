@@ -15,7 +15,6 @@ import {
   decreaseCart,
 } from "../../api/requests/cart";
 import { getProduct } from "../../api/requests/product";
-import classes from "../../styles/button.module.css";
 import styles from "../../styles/desc.module.css";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
@@ -23,10 +22,22 @@ import { RootState } from "../../redux/store";
 import { AiOutlineMinus } from "react-icons/ai";
 import Messages from "../../components/Messages";
 import Button from "../../components/Button";
+import Filter from "../../components/Filter";
+import Image from "next/image";
+
+///test images
+import Img from "../../public/others/google pixel 6.png";
+import Img2 from "../../public/others/hp pavillion 15.jpg";
+import Img3 from "../../public/others/nubia red magic 6.png";
+import Img4 from "../../public/others/R.png";
+import Img5 from "../../public/others/razer blade 15.png";
 
 type Props = {};
 
 function Description({}: Props) {
+  //test images
+  const images = [Img, Img2, Img3, Img4, Img5];
+
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.userInfo);
   const token = useSelector((state: RootState) => state.user.token);
@@ -181,45 +192,72 @@ function Description({}: Props) {
     <>
       {showMessage ? <Messages className=" bg-red-500" name="Sign In" /> : null}
       <div
-        className={`text-white mt-[12rem] border mx-auto w-[90%] flex flex-wrap ${styles.Container}`}
+        className={`text-white mt-[12rem] mx-auto w-[90%] max-w-[800px] flex flex-wrap ${styles.Container}`}
       >
-        <div className={`${styles.ImageContainer} w-[70%] pl-5`}>
+        <div className={` ${styles.ImageContainer} w-[50%] pl-5`}>
           <div className="w-[60%] mx-auto">
             <img src={data?.product_image} alt="" className="" />
           </div>
         </div>
 
-        <div className={`${styles.DescContainer} w-[30%] relative`}>
-          <h1 className="text-3xl mb-6">{data?.name}</h1>
+        <div className={`${styles.DescContainer} w-[50%] relative`}>
+          <h1 className="text-3xl mb-6 glow">{data?.name}</h1>
           <p className="text-xl">{data?.desc}</p>
           <p className="my-8 text-xl">
             N{totalPrice ? splitNumber(totalPrice) : splitNumber(initialPrice)}
           </p>
-          {cartCount < 1 ? (
-            <button
-              onClick={addCartHandler}
-              className={`${classes.Button} px-10 py-4 rounded-full mt-[2rem]`}
-            >
-              Add to cart
-            </button>
-          ) : null}
-          {cartCount ? (
-            <div className="w-[60%] flex items-center text-3xl justify-between">
-              <Button
-                class="rounded-full"
-                clicked={decreaseCartHandler}
-                content={<AiOutlineMinus className="m-auto text-5xl" />}
-                disabled={cartCount === 0}
-              />
-              <p>{cartCount}</p>
-              <Button
-                class="rounded-full"
-                clicked={increaseCartHandler}
-                content={<MdAdd className="m-auto text-5xl" />}
+          <p className="text-xl">{data?.product_brand}</p>
+          <div className="flex flex-wrap w-full items-start mt-[2rem]">
+            {cartCount < 1 ? (
+              <button
+                onClick={addCartHandler}
+                className="border glow-border px-10 py-2"
+              >
+                Add to cart
+              </button>
+            ) : null}
+            {cartCount ? (
+              <div className="w-[60%] flex items-center text-3xl justify-between">
+                <Button
+                  class="rounded-full"
+                  clicked={decreaseCartHandler}
+                  content={<AiOutlineMinus className="m-auto text-5xl" />}
+                  disabled={cartCount === 0}
+                />
+                <p>{cartCount}</p>
+                <Button
+                  class="rounded-full"
+                  clicked={increaseCartHandler}
+                  content={<MdAdd className="m-auto text-5xl" />}
+                />
+              </div>
+            ) : null}
+            <div className="ml-5">
+              <Filter
+                filterOption={{ category: "", type: "" }}
+                filter_name="Quantity"
+                filters={["1", "2", "3"]}
+                class="glow-border"
+                type="desc"
+                dropHand={() => {
+                  return;
+                }}
+                clicked={() => {
+                  return;
+                }}
               />
             </div>
-          ) : null}
+          </div>
         </div>
+      </div>
+      <div className="border flex w-full justify-around py-8 mt-12 flex-wrap">
+        {images.map((el, index) => {
+          return (
+            <div className="w-[30%]">
+              <Image key={index} src={el} alt="img" />;
+            </div>
+          );
+        })}
       </div>
       <div className="absolute bottom-0 w-full">
         <Footer />
