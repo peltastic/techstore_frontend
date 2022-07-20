@@ -1,11 +1,16 @@
 import { ReactNode, useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useQuery } from "react-query";
-import { setUserInfo, setInitialCartCount } from "../redux/reducers/user";
+import {
+  setUserInfo,
+  setInitialCartCount,
+  setToken,
+} from "../redux/reducers/user";
 import { user } from "../api/requests/auth";
 import Nav from "./Nav";
+import { privateInstance } from "../api/requests/config";
+
 interface Props {
   children?: ReactNode;
 }
@@ -16,9 +21,7 @@ const Layout = ({ children }: Props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state: RootState) => state.user.userInfo);
   const tokenData = useSelector((state: RootState) => state.user.token);
-  const cartCount = useSelector((state: RootState) => state.user.cartCount);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  const router = useRouter();
   const { refetch } = useQuery("user", () => user(token), {
     enabled: false,
     onSuccess: (data) => {
@@ -47,10 +50,13 @@ const Layout = ({ children }: Props) => {
       token = tokenRes;
     }
     if (token) {
+      dispatch(setToken(token));
       refetch();
+      privateInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
     }
   }, [tokenData]);
-  useEffect(() => {}, []);
   return (
     <>
       <Nav admin={isAdmin} />

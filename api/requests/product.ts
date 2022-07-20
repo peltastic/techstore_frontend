@@ -1,4 +1,3 @@
-import axios from "axios";
 import { ProductReq } from "../types/product";
 import { privateInstance, publicInstance } from "./config";
 
@@ -7,18 +6,19 @@ type Add = {
   body: ProductReq;
 };
 
-const addProduct = ({ token, body }: Add) => {
-  privateInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+const addProduct = ({ body }: Add) => {
   return privateInstance.post("/products/add", body);
 };
 
 const getProducts = ({ category, type }: any) => {
-  return publicInstance.get(`/products/${category}/${type}`);
+  return publicInstance.get(
+    `/products/getproducts?category=${category}&type=${type}`
+  );
 };
 
-const getProduct = ({ table, id }: any) => {
-  if (table && id) {
-    return publicInstance.get(`/products/product/${table}/${id}`);
+const getProduct = ({ id }: any) => {
+  if (id) {
+    return publicInstance.get(`/products/${id}`);
   }
 };
 

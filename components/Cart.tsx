@@ -80,16 +80,13 @@ function Cart(props: Props) {
     }
     if (currentCount === 0) {
       mutate({
-        token: token,
         body: {
           userId: userId,
           productId: props.productId,
-          category: props.category,
         },
       });
     } else {
       increaseMutation.mutate({
-        token: token,
         userId: userId,
         productId: props.productId,
       });
@@ -104,28 +101,29 @@ function Cart(props: Props) {
       return;
     }
     decreaseMutation.mutate({
-      token: token,
       userId: userId,
       productId: props.productId,
     });
   };
   const clickHandler = () => {
-    router.push(`/products/${props.category}/${props.type}/${props.productId}`);
+    router.push(`/products/${props.productId}`);
   };
   return (
     <div
       className={`relative ${classes.Cart} ${classes.Glow} w-[30%] h-[35rem] mx-auto text-white mb-14 flex flex-col items-center border  px-16 py-12`}
     >
-      <img
-        className="h-[60%] cursor-pointer"
-        onClick={clickHandler}
-        src={props.image}
-        alt=""
-      />
+      <div className="w-full cursor-pointer ">
+        <img
+          className="h-[100%] mx-auto "
+          onClick={clickHandler}
+          src={props.image}
+          alt=""
+        />
+      </div>
       <div className=" absolute bottom-8 flex flex-col items-center w-[70%]">
-      <p className="text-2xl mb-4 cursor-pointer" onClick={clickHandler}>
-        {props.name}
-      </p>
+        <p className="text-2xl mb-4 cursor-pointer" onClick={clickHandler}>
+          {props.name}
+        </p>
         <p className="text-2xl mb-4">
           N
           {totalPrice

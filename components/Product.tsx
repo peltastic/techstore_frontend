@@ -83,7 +83,6 @@ function Product(props: Props) {
     }
     if (cartCount === 0) {
       mutate({
-        token: token,
         body: {
           userId: userId,
           productId: props.id,
@@ -125,9 +124,7 @@ function Product(props: Props) {
       <div className={`border-white py-8 h-full w-full border `}>
         <div
           className="h-[70%] "
-          onClick={() =>
-            router.push(`/products/${props.category}/${props.type}/${props.id}`)
-          }
+          onClick={() => router.push(`/products/${props.id}`)}
         >
           <img src={props.image} className="h-full mx-auto block" />
         </div>
@@ -138,20 +135,18 @@ function Product(props: Props) {
           </p>
           {cartCount ? (
             <div className=" w-[50%] justify-between flex items-center">
-              <button
-                onClick={decreaseCartHandler}
-                className={`${classes.CartButton} bg-[#B3541E] rounded-full p-[.1rem]`}
+              <Button
+                content={<AiOutlineMinus />}
                 disabled={cartCount === 0}
-              >
-                <AiOutlineMinus />
-              </button>
+                clicked={decreaseCartHandler}
+                class="rounded-full"
+              />
               <p>{cartCount}</p>
-              <button
-                onClick={increaseCartHandler}
-                className={`${classes.CartButton} bg-[#B3541E] rounded-full p-[.1rem]`}
-              >
-                <MdAdd />
-              </button>
+              <Button
+                content={<MdAdd />}
+                clicked={increaseCartHandler}
+                class="rounded-full"
+              />
             </div>
           ) : null}
         </div>

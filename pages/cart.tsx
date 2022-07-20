@@ -24,7 +24,7 @@ function Carts({}: Props) {
       if (!userId || !token) {
         return;
       }
-      return getCart({ token: token, userId: userId });
+      return getCart({ userId: userId });
     },
     {
       enabled: false,

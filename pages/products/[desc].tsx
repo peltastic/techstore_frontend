@@ -1,34 +1,37 @@
 import { useEffect, useState } from "react";
-import Footer from "../../../../components/Footer";
+import Footer from "../../components/Footer";
 import { MdAdd } from "react-icons/md";
 import { useQuery, useMutation } from "react-query";
-import { splitNumber } from "../../../../utils/functions";
+import { splitNumber } from "../../utils/functions";
 import { useDispatch } from "react-redux";
 import {
   incrementCartCount,
   decrementCartCount,
-} from "../../../../redux/reducers/user";
+} from "../../redux/reducers/user";
 import {
   addCart,
   checkCart,
   increaseCart,
   decreaseCart,
-} from "../../../../api/requests/cart";
-import { getProduct } from "../../../../api/requests/product";
-import classes from "../../../../styles/button.module.css";
-import styles from "../../../../styles/desc.module.css";
+} from "../../api/requests/cart";
+import { getProduct } from "../../api/requests/product";
+import classes from "../../styles/button.module.css";
+import styles from "../../styles/desc.module.css";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/store";
+import { RootState } from "../../redux/store";
 import { AiOutlineMinus } from "react-icons/ai";
-import Messages from "../../../../components/Messages";
+import Messages from "../../components/Messages";
+import Button from "../../components/Button";
+
 type Props = {};
 
 function Description({}: Props) {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.userInfo);
+  const token = useSelector((state: RootState) => state.user.token);
   const router = useRouter();
-  const { category, desc } = router.query;
+  const { desc } = router.query;
   const [data, setData] = useState<any>("");
   const [initialPrice, setInitialPrice] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
@@ -36,19 +39,16 @@ function Description({}: Props) {
   const [cartCount, setCartCount] = useState<number>(0);
   const [showMessage, setShowMessage] = useState<boolean>(false);
 
-  const productQuery = useQuery(
-    "product",
-    () => getProduct({ table: category, id: desc }),
-    {
-      onSuccess: (data) => {
-        const res = data?.data;
-        setData(res?.data);
-        setInitialPrice(res?.data.price);
-      },
-      enabled: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  const productQuery = useQuery("product", () => getProduct({ id: desc }), {
+    onSuccess: (data) => {
+      const res = data?.data;
+      console.log(res);
+      setData(res?.data[0]);
+      setInitialPrice(res?.data[0].price);
+    },
+    enabled: false,
+    refetchOnWindowFocus: false,
+  });
   const checCartQuery = useQuery(
     "checkCart",
     () => {
@@ -110,18 +110,15 @@ function Description({}: Props) {
       return prevState + 1;
     });
 
-    let token = sessionStorage.getItem("token");
     if (!user.userId || !desc || !token) {
       return;
     }
 
     if (cartCount === 0) {
       mutate({
-        token: token,
         body: {
           userId: user.userId,
           productId: desc,
-          category: category,
         },
       });
     } else {
@@ -148,11 +145,11 @@ function Description({}: Props) {
   };
 
   useEffect(() => {
-    if (!category || !desc) {
+    if (!desc) {
       return;
     }
     productQuery.refetch();
-  }, [category, desc]);
+  }, [desc]);
   useEffect(() => {
     if (!desc || !user.userId) {
       return;
@@ -162,19 +159,15 @@ function Description({}: Props) {
 
   const addCartHandler = () => {
     if (user.userId) {
-      let token: string;
-      if (!data?.product_id || !user.userId || !category) {
+      if (!data?.product_id || !user.userId) {
         return;
       }
-      const tokenSes = sessionStorage.getItem("token");
-      if (tokenSes) {
-        token = tokenSes;
+
+      if (token) {
         mutate({
-          token: token,
           body: {
             userId: user.userId,
             productId: data?.product_id,
-            category: category,
           },
         });
         setCartCount(1);
@@ -212,26 +205,23 @@ function Description({}: Props) {
           ) : null}
           {cartCount ? (
             <div className="w-[60%] flex items-center text-3xl justify-between">
-              <button
+              <Button
+                class="rounded-full"
+                clicked={decreaseCartHandler}
+                content={<AiOutlineMinus className="m-auto text-5xl" />}
                 disabled={cartCount === 0}
-                onClick={decreaseCartHandler}
-                className="bg-[#B3541E] rounded-full h-16 w-16"
-              >
-                <AiOutlineMinus className="m-auto text-5xl" />
-              </button>
+              />
               <p>{cartCount}</p>
-              <button
-                onClick={increaseCartHandler}
-                className="bg-[#B3541E] rounded-full h-16 w-16"
-              >
-                <MdAdd className="m-auto text-5xl" />
-              </button>
+              <Button
+                class="rounded-full"
+                clicked={increaseCartHandler}
+                content={<MdAdd className="m-auto text-5xl" />}
+              />
             </div>
           ) : null}
         </div>
       </div>
       <div className="absolute bottom-0 w-full">
-
         <Footer />
       </div>
     </>
