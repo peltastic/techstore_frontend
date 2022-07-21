@@ -132,7 +132,7 @@ function Cart(props: Props) {
         </p>
         <div className="flex w-full justify-around items-center">
           <button
-            className={`${classes.Glow} rounded-full p-2 flex items-center justify-center`}
+            className={`glow-border p-2 flex items-center justify-center`}
             onClick={decreaseCartHandler}
             disabled={currentCount === 0}
           >
@@ -140,7 +140,7 @@ function Cart(props: Props) {
           </button>
           <p className="text-2xl">{currentCount}</p>
           <button
-            className={`${classes.Glow}  rounded-full flex items-center justify-center p-2`}
+            className={`glow-border  flex items-center justify-center p-2`}
             onClick={increaseCartHandler}
           >
             <MdAdd className="text-2xl" />

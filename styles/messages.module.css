@@ -6,7 +6,7 @@
 @keyframes message {
   50% {
     transform: translate(0);
-    opacity: 0.6;
+    opacity: 1;
   }
 
   60% {

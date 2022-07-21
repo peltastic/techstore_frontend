@@ -47,6 +47,12 @@
   }
 }
 
+@media (max-width: 650px) {
+  .Header {
+    margin-top: 0;
+  }
+}
+
 @media (max-width: 600px) {
   .Heading {
     width: 100%;
@@ -74,9 +80,3 @@
   }
 }
 
-/* @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-  .HeaderImg {
-    -webkit-clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
-    clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
-  }
-} */

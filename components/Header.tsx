@@ -48,9 +48,9 @@ function Header() {
           <Link href={"/products"}>
             <a>
               <Button
-                content="Check Product"
+                content="Check Products"
                 type="link"
-                class="px-[2rem] py-3  rounded-full text-xl"
+                class="px-[2rem] py-3   rounded-full text-xl"
               />
             </a>
           </Link>

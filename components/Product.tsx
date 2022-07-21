@@ -86,7 +86,6 @@ function Product(props: Props) {
         body: {
           userId: userId,
           productId: props.id,
-          category: props.category,
         },
       });
     } else {
@@ -139,13 +138,13 @@ function Product(props: Props) {
                 content={<AiOutlineMinus />}
                 disabled={cartCount === 0}
                 clicked={decreaseCartHandler}
-                class="rounded-full"
+                class=""
               />
               <p>{cartCount}</p>
               <Button
                 content={<MdAdd />}
                 clicked={increaseCartHandler}
-                class="rounded-full"
+                class=""
               />
             </div>
           ) : null}

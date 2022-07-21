@@ -26,17 +26,15 @@ import Filter from "../../components/Filter";
 import Image from "next/image";
 
 ///test images
-import Img from "../../public/others/google pixel 6.png";
-import Img2 from "../../public/others/hp pavillion 15.jpg";
+import Img from "../../public/others/iphone 12.png";
 import Img3 from "../../public/others/nubia red magic 6.png";
-import Img4 from "../../public/others/R.png";
-import Img5 from "../../public/others/razer blade 15.png";
+import Img5 from "../../public/others/nubia red magic 5s.png";
 
 type Props = {};
 
 function Description({}: Props) {
   //test images
-  const images = [Img, Img2, Img3, Img4, Img5];
+  const images = [Img, Img3, Img5];
 
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.userInfo);
@@ -53,7 +51,6 @@ function Description({}: Props) {
   const productQuery = useQuery("product", () => getProduct({ id: desc }), {
     onSuccess: (data) => {
       const res = data?.data;
-      console.log(res);
       setData(res?.data[0]);
       setInitialPrice(res?.data[0].price);
     },
@@ -190,7 +187,9 @@ function Description({}: Props) {
 
   return (
     <>
-      {showMessage ? <Messages className=" bg-red-500" name="Sign In" /> : null}
+      {showMessage ? (
+        <Messages className=" bg-[#000]" name="Sign In" link="/login" />
+      ) : null}
       <div
         className={`text-white mt-[12rem] mx-auto w-[90%] max-w-[800px] flex flex-wrap ${styles.Container}`}
       >
@@ -217,22 +216,22 @@ function Description({}: Props) {
               </button>
             ) : null}
             {cartCount ? (
-              <div className="w-[60%] flex items-center text-3xl justify-between">
+              <div className="w-[30%] mr-16 flex items-center text-3xl justify-between">
                 <Button
-                  class="rounded-full"
+                  class=""
                   clicked={decreaseCartHandler}
-                  content={<AiOutlineMinus className="m-auto text-5xl" />}
+                  content={<AiOutlineMinus className="m-auto text-4xl" />}
                   disabled={cartCount === 0}
                 />
                 <p>{cartCount}</p>
                 <Button
-                  class="rounded-full"
+                  class=""
                   clicked={increaseCartHandler}
-                  content={<MdAdd className="m-auto text-5xl" />}
+                  content={<MdAdd className="m-auto text-4xl" />}
                 />
               </div>
             ) : null}
-            <div className="ml-5">
+            <div className="ml-10">
               <Filter
                 filterOption={{ category: "", type: "" }}
                 filter_name="Quantity"
@@ -250,16 +249,22 @@ function Description({}: Props) {
           </div>
         </div>
       </div>
-      <div className="border flex w-full justify-around py-8 mt-12 flex-wrap">
+      <h1 className="text-white mt-20 text-center text-2xl">
+        Related Products
+      </h1>
+      <div className="flex items-center w-full justify-center py-1 flex-wrap">
         {images.map((el, index) => {
           return (
-            <div className="w-[30%]">
+            <div
+              key={index}
+              className={`${styles.RelatedImages} w-[100px] mx-8 hover:scale-[1.2] transition-all cursor-pointer`}
+            >
               <Image key={index} src={el} alt="img" />;
             </div>
           );
         })}
       </div>
-      <div className="absolute bottom-0 w-full">
+      <div className={`${styles.Footer} absolute bottom-0 w-full`}>
         <Footer />
       </div>
     </>

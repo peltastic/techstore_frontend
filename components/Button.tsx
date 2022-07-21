@@ -18,7 +18,7 @@ const Button = (props: Button) => {
     <button
       disabled={props.disabled}
       onClick={props.clicked}
-      className={`${classes.Button} ${props.class} ${style}  flex items-center text-[#fff]`}
+      className={`border-2  ${props.class} ${style}  flex items-center text-[#fff]`}
     >
       {props.content}
       {props.type === "link" ? <FiArrowRight className="ml-4" /> : null}

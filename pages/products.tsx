@@ -32,7 +32,6 @@ function Products() {
     {
       onSuccess: (data) => {
         setProducts(data?.data.data);
-        console.log(data);
       },
       refetchOnWindowFocus: false,
     }
