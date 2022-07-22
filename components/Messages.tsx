@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function Messages(props: Props) {
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://techstore7.herokuapp.com/";
   return (
     <Link href={baseUrl + props.link}>
       <a>
