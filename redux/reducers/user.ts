@@ -9,6 +9,7 @@ const initialState: UserState = {
     userRole: 0,
   },
   cartCount: 0,
+  token: ""
 };
 
 export const userSlice = createSlice({
@@ -20,6 +21,9 @@ export const userSlice = createSlice({
     },
     setInitialCartCount: (state, action: PayloadAction<number>) => {
       state.cartCount = action.payload;
+    },
+    setToken: (state, action: PayloadAction<string>) => {
+      state.token = action.payload;
     },
     incrementCartCount: (state) => {
       state.cartCount += 1;
@@ -36,6 +40,7 @@ export const {
   setInitialCartCount,
   incrementCartCount,
   decrementCartCount,
+  setToken
 } = userSlice.actions;
 
 export default userSlice.reducer;

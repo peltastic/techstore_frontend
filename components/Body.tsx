@@ -4,6 +4,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { IoPhonePortraitOutline, IoGameController } from "react-icons/io5";
 import {FaLaptop} from "react-icons/fa"
 import Link from "next/link";
+import Button from "./Button"
 
 type Props = {};
 
@@ -21,9 +22,8 @@ function Body({}: Props) {
           </p>
           <GiAirZigzag className="text-[10rem] mt-[1rem] mb-10" />
           <Link href={"/products/phones/gaming"}>
-            <a className="bg-white text-[#B3541E] flex items-center px-6 py-4 rounded-full mt-6">
-              Check Products
-              <FiArrowRight className="ml-[.5rem]" />
+            <a>
+             <Button content="Check Product" class="px-6 py-4 rounded-full" type="link"  />
             </a>
           </Link>
         </div>
@@ -36,9 +36,8 @@ function Body({}: Props) {
           </p>
           <IoPhonePortraitOutline className="text-[10rem] mt-[1rem] mb-10" />
           <Link href={"/products/phones/regular"}>
-            <a className="bg-white text-[#B3541E] flex items-center px-6 py-4 rounded-full mt-6">
-              Check Products
-              <FiArrowRight className="ml-[.5rem]" />
+            <a>
+            <Button content="Check Product" class="px-6 py-4 rounded-full" type="link"  />
             </a>
           </Link>
         </div>
@@ -54,9 +53,8 @@ function Body({}: Props) {
           </p>
           <IoGameController className="text-[8rem] mt-[1rem] mb-10" />
           <Link href={"/products/laptops/gaming"}>
-            <a className="bg-white text-[#B3541E] flex items-center px-6 py-4 rounded-full mt-6">
-              Check Products
-              <FiArrowRight className="ml-[.5rem]" />
+            <a>
+            <Button content="Check Product" class="px-6 py-4 rounded-full" type="link"  />
             </a>
           </Link>
         </div>
@@ -68,9 +66,8 @@ function Body({}: Props) {
           </p>
           <FaLaptop className="text-[8rem] mt-[1rem] mb-10" />
           <Link href={"/products/laptops/regular"}>
-            <a className="bg-white text-[#B3541E] flex items-center px-6 py-4 rounded-full mt-6">
-              Check Products
-              <FiArrowRight className="ml-[.5rem]" />
+            <a>
+            <Button content="Check Product" class="px-6 py-4 rounded-full" type="link"  />
             </a>
           </Link>
         </div>

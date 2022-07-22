@@ -1,28 +1,60 @@
 import classes from "../styles/header.module.css";
-import { FiArrowRight } from "react-icons/fi";
+
 import Link from "next/link";
 import Heading from "./headersvg/Heading";
+import { motion, Variant } from "framer-motion";
+import Button from "./Button";
 
-type Props = {};
+function Header() {
+  const subHeadingVariant = {
+    hidden: { opacity: 0.6, y: 40, display: "none" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      display: "block",
+      transition: {
+        delay: 2.5,
+        opacity: {
+          repeat: Infinity,
+          duration: 2,
+          type: "tween",
+          ease: [0.17, 0.67, 0.83, 0.67],
+        },
+      },
+    },
+  };
 
-function Header({}: Props) {
   return (
     <div
-      className={`${classes.Header} items-center w-full flex h-[95vh] mt-[5rem]`}
+      className={`${classes.Header} items-center w-full flex h-[95vh] mt-[5rem] overflow-hidden`}
     >
       <div className={`w-[40%] -mt-[5rem]  ml-[4rem] ${classes.Heading} `}>
         <div className=" mx-auto w-full">
-        <Heading />
+          <Heading />
         </div>
-        <p className={`text-[1.5rem] italic ${classes.Glow}`}>
+        <motion.p
+          variants={subHeadingVariant}
+          initial="hidden"
+          animate="visible"
+          className={`text-[1.5rem] mb-10 italic ${classes.Glow}`}
+        >
           your one stop online shop for tech gadgets
-        </p>
-        <Link href={"/products"}>
-          <a className={`${classes.BorderGlow} mt-[5rem] flex items-center font-bold text-[#ffffff] py-6 md:py-4 px-6 text-2xl md:text-lg rounded-3xl w-[20rem] md:w-[14rem]`}>
-            Check Products
-            <FiArrowRight className="ml-[.5rem]" />
-          </a>
-        </Link>
+        </motion.p>
+        <motion.div
+          animate={{ x: 20, opacity: 1 }}
+          transition={{ delay: 3 }}
+          className="opacity-0 w-full sm:w-auto flex sm:block justify-center -ml-[2rem]"
+        >
+          <Link href={"/products"}>
+            <a>
+              <Button
+                content="Check Products"
+                type="link"
+                class="px-[2rem] py-3   rounded-full text-xl"
+              />
+            </a>
+          </Link>
+        </motion.div>
       </div>
 
       <div className={`${classes.HeaderImg} w-[60%] h-full`}></div>

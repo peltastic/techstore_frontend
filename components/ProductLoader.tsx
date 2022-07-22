@@ -1,24 +1,67 @@
 import classes from "../styles/product.module.css";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 
-type Props = {
-  type: string;
-};
-function ProductLoader(props: Props) {
+function ProductLoader() {
+  const controls = useAnimation();
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: (i: number) => {
+      const delay = i * 0.5;
+      return {
+        pathLength: 1,
+        opacity: 1,
+        transition: {
+          pathLength: {
+            delay,
+            type: "spring",
+            duration: 2,
+            bounce: 0,
+            repeat: Infinity,
+          },
+          opacity: { delay, duration: 0.01 },
+        },
+      };
+    },
+  };
+  useEffect(() => {
+    controls.start("visible");
+  }, [controls]);
   return (
-    <>
-      {props.type === "product" ? (
-        <div className={`${classes.ProductLoader} mx-4 my-2 items-center mb-24 flex justify-center flex-col w-[30%]`}>
-          <div
-            className={`${classes.MainLoader} w-[50%] mx-4 mb-7 my-2 animate-pulse bg-slate-400 h-[15rem]`}
-          ></div>
-          <div className="w-[70%] mx-4 my-2 animate-pulse bg-slate-700 h-[2rem]"></div>
-          <div className="w-[30%] mx-4 my-2 animate-pulse bg-slate-700 h-[2rem]"></div>
-        </div>
-      ) : null}
-      {props.type === "cart" ? (
-        <div className="w-[90%] bg-slate-700 h-[15rem] animate-pulse my-10 mx-auto"></div>
-      ) : null}
-    </>
+    <div className={`w-[30%] ${classes.ProductLoader} mr-[4rem]`}>
+      <motion.svg
+        width="209"
+        height="209"
+        viewBox="0 0 309 309"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        initial="hidden"
+        animate={controls}
+      >
+        <motion.rect
+          variants={draw}
+          custom={0.5}
+          x="154.535"
+          y="3.36456"
+          width="214"
+          height="214"
+          transform="rotate(44.9947 154.535 3.36456)"
+          stroke="white"
+          stroke-width="4"
+        />
+        <motion.rect
+          variants={draw}
+          custom={0.5}
+          x="155.408"
+          y="14.7071"
+          width="199"
+          height="199"
+          transform="rotate(44.9947 155.408 14.7071)"
+          stroke="white"
+          stroke-opacity="0.31"
+        />
+      </motion.svg>
+    </div>
   );
 }
 

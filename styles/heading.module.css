@@ -19,11 +19,17 @@
        margin-left: 1rem
     }
 }
+
+@media (max-width: 500px) {
+    .HeadingLg {
+        margin-left: 3.3rem;
+    }
+}
 @media (max-width: 400px) {
     .HeadingLg {
        display: flex;
        width: 100%;
        justify-content: center;
-
+        margin-left: 2.8rem;
     }
 }

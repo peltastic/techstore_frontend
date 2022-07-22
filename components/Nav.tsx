@@ -6,57 +6,25 @@ import { useRouter } from "next/router";
 import classes from "../styles/nav.module.css";
 import { RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { user } from "../api/requests/auth";
+import { useState } from "react";
 import { setUserInfo, setInitialCartCount } from "../redux/reducers/user";
 import Messages from "../components/Messages";
 import NavMobile from "./NavMobile";
 import Backdrop from "./Backdrop";
 
-function Nav() {
-  const dispatch = useDispatch();
+type Props = {
+  admin: boolean;
+};
 
-  let token: string;
+function Nav(props: Props) {
+  const dispatch = useDispatch();
 
   const userData = useSelector((state: RootState) => state.user.userInfo);
   const cartCount = useSelector((state: RootState) => state.user.cartCount);
   const router = useRouter();
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [showNav, setShowNav] = useState<boolean>(false);
 
-  const { refetch } = useQuery("user", () => user(token), {
-    enabled: false,
-    onSuccess: (data) => {
-      if (data) {
-        const res = data.data;
-        dispatch(
-          setUserInfo({
-            username: res.user_name,
-            userId: res.user_id,
-            email: res.email,
-            userRole: res.user_role,
-          })
-        );
-        dispatch(setInitialCartCount(res.cart_count));
-      }
-    },
-  });
-  useEffect(() => {
-    if (userData.userRole === 5180) {
-      setIsAdmin(true);
-    }
-  }, [userData]);
-  useEffect(() => {
-    const tokenRes = sessionStorage.getItem("token");
-    if (tokenRes) {
-      token = tokenRes;
-    }
-    if (token) {
-      refetch();
-    }
-  }, []);
   const logout = () => {
     sessionStorage.removeItem("token");
     dispatch(
@@ -80,7 +48,9 @@ function Nav() {
   };
   return (
     <>
-      {showMessage ? <Messages className=" bg-red-500" name="Sign In" /> : null}
+      {showMessage ? (
+        <Messages className=" bg-[#000]" name="Sign In" link="/login" />
+      ) : null}
       <div
         className={`${classes.NavMobileIcon}  z-[80]`}
         onClick={() => setShowNav(!showNav)}
@@ -92,9 +62,9 @@ function Nav() {
       <NavMobile
         logout={logout}
         show={showNav}
-        isAdmin={isAdmin}
+        isAdmin={props.admin}
         userId={!!userData.userId}
-        clicked={() =>setShowNav(!showNav)}
+        clicked={() => setShowNav(!showNav)}
       />
       {showNav ? <Backdrop /> : null}
       <nav
@@ -127,7 +97,7 @@ function Nav() {
           ) : null}
         </ul>
         <div className="flex items-center">
-          {isAdmin && userData.userId ? (
+          {props.admin && userData.userId ? (
             <Link href={"/admin"}>
               <a>
                 <button
@@ -145,8 +115,8 @@ function Nav() {
         onClick={cartHandler}
       >
         <BsCart3 className={`${classes.Cart} text-4xl z-50 text-white`} />
-        <div className="h-[1.5rem] w-[1.5rem] flex justify-center items-center absolute top-[-7px] right-[-7px] bg-[#B3541E] px-[.5px] py-[.5px] rounded-full">
-          <p className=" text-white text-sm  text-center">{cartCount}</p>
+        <div className="h-[1.5rem] w-[1.5rem] flex justify-center items-center absolute top-[-7px] right-[-7px] bg-[#000] px-[.5px] py-[.5px] rounded-full">
+          <p className=" text-white text-sm glow text-center">{cartCount}</p>
         </div>
       </div>
     </>
