@@ -14,13 +14,16 @@
 @media (max-width: 1000px) {
   .Cart {
     width: 48%;
-    /* margin-right: 2rem; */
   }
 }
 
 @media (max-width: 650px) {
   .Cart {
     width: 95%;
+  }
+
+  .CartContainer {
+    position: absolute;
   }
 }
 @media (max-width: 500px) {

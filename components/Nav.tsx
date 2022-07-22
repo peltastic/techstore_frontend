@@ -111,7 +111,7 @@ function Nav(props: Props) {
         </div>
       </nav>
       <div
-        className={`${classes.CartContainer} ml-auto fixed z-50 top-[3.1rem] right-8 cursor-pointer`}
+        className={`${classes.CartContainer} ml-auto absolute md:fixed z-50 top-[3.1rem] right-8 cursor-pointer`}
         onClick={cartHandler}
       >
         <BsCart3 className={`${classes.Cart} text-4xl z-50 text-white`} />
