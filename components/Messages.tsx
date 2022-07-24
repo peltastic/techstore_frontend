@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function Messages(props: Props) {
-  const baseUrl = "https://techstore7.herokuapp.com/";
+  const baseUrl = "https://techstore8.vercel.app/";
   return (
     <Link href={baseUrl + props.link}>
       <a>
