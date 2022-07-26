@@ -1,6 +1,6 @@
 import Cart from "../components/Cart";
 import { useQuery } from "react-query";
-import { getCart } from "../api/requests/cart";
+import { getCart, deleteCart } from "../api/requests/cart";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
 import { useEffect, useState } from "react";
@@ -9,6 +9,9 @@ import ProductLoader from "../components/ProductLoader";
 import { BsCart3 } from "react-icons/bs";
 import { setCheckout } from "../redux/reducers/cart";
 import { splitNumber } from "../utils/functions";
+import { useMutation } from "react-query";
+import { decrementCartCount } from "../redux/reducers/user";
+import { decrementCheckout } from "../redux/reducers/cart";
 
 type Props = {};
 
@@ -30,9 +33,12 @@ function Carts({}: Props) {
       enabled: false,
       onSuccess: (data) => {
         const res = data?.data;
-        setCartData(res.data);
-        const sum: number = checkoutSum(res?.data);
-        dispatch(setCheckout(sum));
+        if (res) {
+          setCartData(res.data);
+          const sum: number = checkoutSum(res?.data);
+          dispatch(setCheckout(sum));
+          return;
+        }
       },
       refetchOnWindowFocus: false,
     }
@@ -43,6 +49,9 @@ function Carts({}: Props) {
       refetch();
     }
   }, [userId]);
+  useEffect(() => {
+    console.log("refetching///");
+  }, [isLoading]);
   const checkoutSum = (data: any[]): number => {
     let sum: number = 0;
     for (const el of data) {
@@ -50,6 +59,26 @@ function Carts({}: Props) {
     }
     return sum;
   };
+  const deleteMutation = useMutation(deleteCart, {
+    onSuccess: () => {
+      dispatch(decrementCartCount());
+      refetch();
+    },
+  });
+  const deleteCartHandler = async (
+    id: string,
+    cartId: string,
+    amount: number
+  ) => {
+    deleteMutation.mutate({
+      userId: id,
+      cartId: cartId,
+    });
+    const index = cartData.findIndex((el) => el.cart_id === cartId);
+    cartData.splice(index, 1);
+    dispatch(decrementCheckout(amount));
+  };
+
   return (
     <>
       <button
@@ -58,7 +87,9 @@ function Carts({}: Props) {
       >
         Checkout {splitNumber(checkout)}
       </button>
-      <div className={`${classes.CartContainer} flex flex-wrap mt-[10rem] w-full `}>
+      <div
+        className={`${classes.CartContainer} flex flex-wrap mt-[10rem] w-full `}
+      >
         {cartData.length > 0 ? (
           <div className="flex flex-wrap justify-start w-full">
             {cartData.map((item, index) => {
@@ -71,9 +102,10 @@ function Carts({}: Props) {
                   image={item?.product_image}
                   productId={item?.product_id}
                   count={item?.count}
-                  cartId={item?.cartId}
+                  cartId={item?.cart_id}
                   category={item?.category}
                   type={item?.type}
+                  deleteCart={deleteCartHandler}
                 />
               );
             })}
@@ -82,8 +114,10 @@ function Carts({}: Props) {
           <>
             {isLoading ? (
               <div className="fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
-                <ProductLoader/>
-                <p className="text-white glow text-center -ml-[3.5rem] mt-7 text-xl">Loading...</p>
+                <ProductLoader />
+                <p className="text-white glow text-center -ml-[3.5rem] mt-7 text-xl">
+                  Loading...
+                </p>
               </div>
             ) : (
               <div className="text-white fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
