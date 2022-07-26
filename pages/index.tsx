@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <div className="h-screen">
       <Header />
-      <Featured />
+      <Featured heading="Featured Products" limit={3} />
       <Body />
       <Footer />
     </div>
