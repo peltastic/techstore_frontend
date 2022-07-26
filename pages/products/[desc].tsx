@@ -24,6 +24,8 @@ import Messages from "../../components/Messages";
 import Button from "../../components/Button";
 import Filter from "../../components/Filter";
 import Image from "next/image";
+import Loader from "../../components/Loader";
+import Featured from "../../components/Featured";
 
 ///test images
 import Img from "../../public/others/iphone 12.png";
@@ -190,81 +192,87 @@ function Description({}: Props) {
       {showMessage ? (
         <Messages className=" bg-[#000]" name="Sign In" link="/login" />
       ) : null}
-      <div
-        className={`text-white mt-[12rem] mx-auto w-[90%] max-w-[800px] flex flex-wrap ${styles.Container}`}
-      >
-        <div className={` ${styles.ImageContainer} w-[50%] pl-5`}>
-          <div className="w-[60%] mx-auto">
-            <img src={data?.product_image} alt="" className="" />
+      {!productQuery.isLoading ? (
+        <div
+          className={`text-white mt-[12rem] mx-auto w-[90%] max-w-[800px] flex flex-wrap ${styles.Container}`}
+        >
+          <div className={` ${styles.ImageContainer} w-[50%] pl-5`}>
+            <div className="w-[60%] mx-auto">
+              <img src={data?.product_image} alt="" className="" />
+            </div>
           </div>
-        </div>
 
-        <div className={`${styles.DescContainer} w-[50%] relative`}>
-          <h1 className="text-3xl mb-6 glow">{data?.name}</h1>
-          <p className="text-xl">{data?.desc}</p>
-          <p className="my-8 text-xl">
-            N{totalPrice ? splitNumber(totalPrice) : splitNumber(initialPrice)}
-          </p>
-          <p className="text-xl">{data?.product_brand}</p>
-          <div className="flex flex-wrap w-full items-start mt-[2rem]">
-            {cartCount < 1 ? (
-              <button
-                onClick={addCartHandler}
-                className="border glow-border px-10 py-2"
-              >
-                Add to cart
-              </button>
-            ) : null}
-            {cartCount ? (
-              <div className="w-[30%] mr-16 flex items-center text-3xl justify-between">
-                <Button
-                  class=""
-                  clicked={decreaseCartHandler}
-                  content={<AiOutlineMinus className="m-auto text-4xl" />}
-                  disabled={cartCount === 0}
-                />
-                <p>{cartCount}</p>
-                <Button
-                  class=""
-                  clicked={increaseCartHandler}
-                  content={<MdAdd className="m-auto text-4xl" />}
+          <div className={`${styles.DescContainer} w-[50%] relative`}>
+            <h1 className="text-3xl mb-6 glow">{data?.name}</h1>
+            <p className="text-xl">{data?.desc}</p>
+            <p className="my-8 text-xl">
+              N
+              {totalPrice ? splitNumber(totalPrice) : splitNumber(initialPrice)}
+            </p>
+            <p className="text-xl">{data?.product_brand}</p>
+            <div className="flex flex-wrap w-full items-start mt-[2rem]">
+              {cartCount < 1 ? (
+                <button
+                  onClick={addCartHandler}
+                  className="border glow-border px-10 py-2"
+                >
+                  Add to cart
+                </button>
+              ) : null}
+              {cartCount ? (
+                <div className="w-[30%] mr-16 flex items-center text-3xl justify-between">
+                  <Button
+                    class=""
+                    clicked={decreaseCartHandler}
+                    content={<AiOutlineMinus className="m-auto text-4xl" />}
+                    disabled={cartCount === 0}
+                  />
+                  <p>{cartCount}</p>
+                  <Button
+                    class=""
+                    clicked={increaseCartHandler}
+                    content={<MdAdd className="m-auto text-4xl" />}
+                  />
+                </div>
+              ) : null}
+              <div className="ml-10">
+                <Filter
+                  filterOption={{ category: "", type: "" }}
+                  filter_name="Quantity"
+                  filters={["1", "2", "3"]}
+                  class="glow-border"
+                  type="desc"
+                  dropHand={() => {
+                    return;
+                  }}
+                  clicked={() => {
+                    return;
+                  }}
                 />
               </div>
-            ) : null}
-            <div className="ml-10">
-              <Filter
-                filterOption={{ category: "", type: "" }}
-                filter_name="Quantity"
-                filters={["1", "2", "3"]}
-                class="glow-border"
-                type="desc"
-                dropHand={() => {
-                  return;
-                }}
-                clicked={() => {
-                  return;
-                }}
-              />
             </div>
           </div>
         </div>
-      </div>
-      <h1 className="text-white mt-20 text-center text-2xl">
-        Related Products
-      </h1>
-      <div className="flex items-center w-full justify-center py-1 flex-wrap">
-        {images.map((el, index) => {
-          return (
-            <div
-              key={index}
-              className={`${styles.RelatedImages} w-[100px] mx-8 hover:scale-[1.2] transition-all cursor-pointer`}
-            >
-              <Image key={index} src={el} alt="img" />;
+      ) : (
+        <div className="flex w-full mt-[15rem] justify-center">
+          <Loader class="w-[20rem] h-[15rem] mr-20" />
+          <div className="flex flex-col">
+            <Loader class="w-[20rem] mb-5 h-[2rem]" />
+            <Loader class="w-[15rem] mb-10 h-[2rem]" />
+            <Loader class="w-[15rem] mb-20 h-[2rem]" />
+            <div className=" flex items-center">
+              <Loader class="w-[10rem] mr-8 h-[2rem]" />
+              <Loader class="w-[10rem] h-[2rem]" />
             </div>
-          );
-        })}
+          </div>
+        </div>
+      )}
+
+      <div className="flex mt-[4rem]">
+        <Featured heading="Related Products" offset={2} limit={3} />
       </div>
-      <div className={`${styles.Footer} absolute bottom-0 w-full`}>
+
+      <div className={`${styles.Footer}  bottom-0 w-full`}>
         <Footer />
       </div>
     </>

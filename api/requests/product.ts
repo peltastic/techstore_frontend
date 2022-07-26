@@ -10,11 +10,11 @@ const addProduct = ({ body }: Add) => {
   return privateInstance.post("/products/add", body);
 };
 
-const getProducts = ({ category, type, limit }: any) => {
+const getProducts = ({ category, type, limit, offset }: any) => {
   return publicInstance.get(
     `/products/getproducts?category=${category || ""}&type=${
       type || ""
-    }&limit=${limit || ""}`
+    }&limit=${limit || ""}&offset=${offset || ""}`
   );
 };
 
