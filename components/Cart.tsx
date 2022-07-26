@@ -1,5 +1,5 @@
 import { MdAdd } from "react-icons/md";
-import { AiOutlineMinus } from "react-icons/ai";
+import { AiOutlineMinus, AiFillDelete } from "react-icons/ai";
 import { useMutation } from "react-query";
 import { increaseCart, decreaseCart, addCart } from "../api/requests/cart";
 import { useDispatch } from "react-redux";
@@ -21,6 +21,7 @@ type Props = {
   cartId: string;
   category: string;
   type: string;
+  deleteCart: (id: string, cartId: string, amount: number) => void;
 };
 
 function Cart(props: Props) {
@@ -69,6 +70,7 @@ function Cart(props: Props) {
       });
     },
   });
+
   const increaseCartHandler = () => {
     setCurrentCount((prevState: number): number => {
       return prevState + 1;
@@ -112,6 +114,18 @@ function Cart(props: Props) {
     <div
       className={`relative ${classes.Cart} ${classes.Glow} w-[30%] h-[35rem] mx-auto text-white mb-14 flex flex-col items-center border  px-16 py-12`}
     >
+      <button
+        onClick={() =>
+          props.deleteCart(
+            userId,
+            props.cartId,
+            totalPrice || props.total_price
+          )
+        }
+        className="absolute right-4 top-4"
+      >
+        <AiFillDelete className="text-4xl glow" />
+      </button>
       <div className="w-full cursor-pointer ">
         <img
           className="h-[100%] mx-auto "

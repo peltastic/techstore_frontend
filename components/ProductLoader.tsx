@@ -47,7 +47,7 @@ function ProductLoader() {
           height="214"
           transform="rotate(44.9947 154.535 3.36456)"
           stroke="white"
-          stroke-width="4"
+          strokeWidth="4"
         />
         <motion.rect
           variants={draw}
@@ -58,7 +58,7 @@ function ProductLoader() {
           height="199"
           transform="rotate(44.9947 155.408 14.7071)"
           stroke="white"
-          stroke-opacity="0.31"
+          strokeOpacity="0.31"
         />
       </motion.svg>
     </div>

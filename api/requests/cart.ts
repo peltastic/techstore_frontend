@@ -21,4 +21,7 @@ const decreaseCart = ({ userId, productId }: any) => {
 const checkCart = ({ userId, productId }: any) => {
   return privateInstance.get(`cart/checkCart/${userId}/${productId}`);
 };
-export { addCart, getCart, increaseCart, decreaseCart, checkCart };
+const deleteCart = ({ userId, cartId }: any) => {
+  return privateInstance.delete(`cart/delete/${userId}/${cartId}`);
+};
+export { addCart, getCart, increaseCart, decreaseCart, checkCart, deleteCart };
