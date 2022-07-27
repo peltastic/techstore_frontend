@@ -86,14 +86,14 @@ function Header() {
         <motion.div
           animate={{ y: -20, opacity: 1 }}
           transition={{ delay: 3, type: "spring" }}
-          className="opacity-0 w-full mt-[4rem] sm:w-auto flex sm:block justify-center"
+          className="opacity-0 w-full mt-[4rem] sm:w-auto flex lg:block justify-center"
         >
           <Link href={"/products"}>
             <a>
               <Button
                 content="Check Products"
                 type="link"
-                class="px-[2rem] py-4 md:py-3   rounded-full text-xl"
+                class="px-[2rem] py-4 md:py-3  rounded-full text-xl"
               />
             </a>
           </Link>

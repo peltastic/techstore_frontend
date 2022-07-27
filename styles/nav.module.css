@@ -29,7 +29,9 @@
   display: block;
   margin: auto;
   width: 90%;
-  background-color: #f15800;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #ffffff,
+    0 0 2px #ffffff, 0 0 2px #ffffff, 0 0 2px #ffffff, 0 0 2px #ffffff;
   height: 2px;
   transition: all 0.2s;
 }

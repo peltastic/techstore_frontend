@@ -49,9 +49,7 @@ function Carts({}: Props) {
       refetch();
     }
   }, [userId]);
-  useEffect(() => {
-    console.log("refetching///");
-  }, [isLoading]);
+
   const checkoutSum = (data: any[]): number => {
     let sum: number = 0;
     for (const el of data) {
