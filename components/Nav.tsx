@@ -116,7 +116,7 @@ function Nav(props: Props) {
       >
         <BsCart3 className={`${classes.Cart} text-4xl z-50 text-white`} />
         <div className="h-[1.5rem] w-[1.5rem] flex justify-center items-center absolute top-[-7px] right-[-7px] bg-[#000] px-[.5px] py-[.5px] rounded-full">
-          <p className=" text-white text-sm glow text-center">{cartCount}</p>
+          <p className=" text-white text-sm glow text-center">{cartCount||0}</p>
         </div>
       </div>
     </>

@@ -1,6 +1,5 @@
 import classes from "../styles/body.module.css";
 import { GiAirZigzag } from "react-icons/gi";
-import { FiArrowRight } from "react-icons/fi";
 import { IoPhonePortraitOutline, IoGameController } from "react-icons/io5";
 import {FaLaptop} from "react-icons/fa"
 import Link from "next/link";
@@ -21,7 +20,7 @@ function Body({}: Props) {
             durability at the best prices
           </p>
           <GiAirZigzag className="text-[10rem] mt-[1rem] mb-10" />
-          <Link href={"/products/phones/gaming"}>
+          <Link href={"/products"}>
             <a>
              <Button content="Check Product" class="px-6 py-4 rounded-full" type="link"  />
             </a>
@@ -35,7 +34,7 @@ function Body({}: Props) {
             prices
           </p>
           <IoPhonePortraitOutline className="text-[10rem] mt-[1rem] mb-10" />
-          <Link href={"/products/phones/regular"}>
+          <Link href={"/products"}>
             <a>
             <Button content="Check Product" class="px-6 py-4 rounded-full" type="link"  />
             </a>
@@ -52,7 +51,7 @@ function Body({}: Props) {
             purposes
           </p>
           <IoGameController className="text-[8rem] mt-[1rem] mb-10" />
-          <Link href={"/products/laptops/gaming"}>
+          <Link href={"/products"}>
             <a>
             <Button content="Check Product" class="px-6 py-4 rounded-full" type="link"  />
             </a>
@@ -65,7 +64,7 @@ function Body({}: Props) {
             Best regular laptops which good performance and durablity for good prices
           </p>
           <FaLaptop className="text-[8rem] mt-[1rem] mb-10" />
-          <Link href={"/products/laptops/regular"}>
+          <Link href={"/products"}>
             <a>
             <Button content="Check Product" class="px-6 py-4 rounded-full" type="link"  />
             </a>
