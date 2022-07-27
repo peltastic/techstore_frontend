@@ -112,7 +112,7 @@ function Cart(props: Props) {
   };
   return (
     <div
-      className={`relative ${classes.Cart} ${classes.Glow} w-[30%] h-[35rem] mx-auto text-white mb-14 flex flex-col items-center border  px-16 py-12`}
+      className={`relative ${classes.Cart} ${classes.Glow} w-[30%] h-[35rem]  mx-auto text-white mb-14 flex flex-col items-center border  px-16 py-12`}
     >
       <button
         onClick={() =>
@@ -126,9 +126,9 @@ function Cart(props: Props) {
       >
         <AiFillDelete className="text-4xl glow" />
       </button>
-      <div className="w-full cursor-pointer ">
+      <div className="w-full cursor-pointer h-[70%]">
         <img
-          className="h-[100%] mx-auto "
+          className=" h-full mx-auto "
           onClick={clickHandler}
           src={props.image}
           alt=""
