@@ -151,7 +151,7 @@ const Login: NextPage = ({}: Props) => {
   return (
     <div className="h-screen flex text-white ">
       <div className={ `w-[50%] ${classes.LoginImage}`}></div>
-      <div className={`${classes.Login} w-[50%] px-8 my-auto`}>
+      <div className={`${classes.Login} relative w-[50%] px-8 my-auto`}>
         <div className=" flex justify-center ">
           <button
             className={` text-2xl sm:text-base px-6 py-3${isLogin ? activeStyle : null}`}
@@ -180,7 +180,7 @@ const Login: NextPage = ({}: Props) => {
           ) : null}
         </div>
         {isLoading || signupMutation.isLoading ? (
-          <div className="flex items-center justify-center">
+          <div className={`absolute -translate-x-[50%] left-[50%] ${isLogin? "-bottom-[7rem]" :"-bottom-[13rem]"} mx-auto flex items-center  justify-center`}>
             {isLogin ? <p>Authorizing</p> : null}
             <Spinner />
           </div>
