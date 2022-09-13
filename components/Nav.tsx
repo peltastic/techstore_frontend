@@ -1,7 +1,7 @@
 import Logo from "../assets/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { BsCart3 } from "react-icons/bs";
+import { AiOutlineShopping } from "react-icons/ai";
 import { useRouter } from "next/router";
 import classes from "../styles/nav.module.css";
 import { RootState } from "../redux/store";
@@ -49,7 +49,7 @@ function Nav(props: Props) {
   return (
     <>
       {showMessage ? (
-        <Messages className=" bg-[#000]" name="Sign In" link="/login" />
+        <Messages className=" bg-[#ffffff]" name="Sign In" link="/login" />
       ) : null}
       <div
         className={`${classes.NavMobileIcon}  z-[80]`}
@@ -68,33 +68,23 @@ function Nav(props: Props) {
       />
       {showNav ? <Backdrop /> : null}
       <nav
-        className={`${classes.Nav} w-full  px-16 py-11  flex items-center text-white fixed top-0 left-0 z-20 bg-[#040303]`}
+        className={`${classes.Nav} w-full  px-16 py-8  flex items-center text-white fixed top-0 left-0 z-20 bg-[#fffdfd]`}
       >
-        <Image src={Logo} alt="" />
-        <ul className="flex m-auto text-[1.5rem]">
-          <li className="mx-[4rem]">
+        <p className="text-[#e23e3e] text-4xl mr-10">cesorys</p>
+        <ul className="flex text-[1.3rem] mt-[.5rem] mr-auto text-[#b8b8b8]">
+          <li className="mr-[1rem]">
             <Link href={"/"}>
-              <a>Home</a>
+              <a className="text-black">Home</a>
             </Link>
           </li>
 
-          <li className="mx-[4rem]">
+          <li className="mr-[1rem]">
             <Link href={"/products"}>
-              <a>Products</a>
+              <a>Shop</a>
             </Link>
           </li>
-          {!userData.userId ? (
-            <li className="mx-[4rem]">
-              <Link href={"/login"}>
-                <a>Sign In</a>
-              </Link>
-            </li>
-          ) : null}
-          {userData.userId ? (
-            <li className="mx-[4rem]">
-              <button onClick={logout}>Logout</button>
-            </li>
-          ) : null}
+          <li className="mr-[1rem]">About Us</li>
+          <li className="mr-[1rem]">Contact</li>
         </ul>
         <div className="flex items-center">
           {props.admin && userData.userId ? (
@@ -109,16 +99,28 @@ function Nav(props: Props) {
             </Link>
           ) : null}
         </div>
-      </nav>
-      <div
-        className={`${classes.CartContainer} ml-auto absolute md:fixed z-50 top-[3.1rem] right-8 cursor-pointer`}
-        onClick={cartHandler}
-      >
-        <BsCart3 className={`${classes.Cart} text-4xl z-50 text-white`} />
-        <div className="h-[1.5rem] w-[1.5rem] flex justify-center items-center absolute top-[-7px] right-[-7px] bg-[#000] px-[.5px] py-[.5px] rounded-full">
-          <p className=" text-white text-sm glow text-center">{cartCount||0}</p>
+        {!userData.userId ? (
+          <Link href={"/login"}>
+            <a className="mr-[3rem] text-[1.3rem] text-black">Login</a>
+          </Link>
+        ) : null}
+        {userData.userId ? (
+          <button className="mx-[4rem]" onClick={logout}>
+            Logout
+          </button>
+        ) : null}
+        <div
+          className={`${classes.CartContainer} relative cursor-pointer`}
+          onClick={cartHandler}
+        >
+          <AiOutlineShopping
+            className={`${classes.Cart}  text-4xl z-50 text-black`}
+          />
+          <div className="h-[1.5rem] w-[1.5rem] flex justify-center items-center absolute top-[-7px] right-[-7px] px-[.5px] py-[.5px] rounded-full">
+            <p className=" text-sm text-black text-center">{cartCount || 0}</p>
+          </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 }

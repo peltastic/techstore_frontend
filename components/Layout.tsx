@@ -83,7 +83,7 @@ const Layout = ({ children }: Props) => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Nav admin={isAdmin} />
-      {children}
+      <div className="px-[1rem]">{children}</div>
     </>
   );
 };

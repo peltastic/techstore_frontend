@@ -3,6 +3,8 @@ import classes from "../styles/header.module.css";
 import Link from "next/link";
 import { motion, useAnimation } from "framer-motion";
 import Button from "./Button";
+import HeroImg from "../assets/header.png";
+import Image from "next/image";
 
 function Header() {
   const controls = useAnimation();
@@ -42,66 +44,30 @@ function Header() {
   const headerRight = ["S", "T", "O", "R", "E"];
 
   return (
-    <div
-      className={`${classes.Header} items-center w-full flex h-[95vh] mt-[5rem] overflow-hidden`}
-    >
-      <div
-        className={`w-[40%] mr-auto -mt-[5rem]  ml-[4rem] ${classes.Heading}`}
-      >
-        <motion.div
-          initial="hidden"
-          animate={controls}
-          className="text-white text-[8rem] glow flex "
-        >
-          {headerLeft.map((el, index) => (
-            <motion.h1
-              className=""
-              variants={headerVariant}
-              custom={index}
-              key={index}
-            >
-              <span>{el}</span>
-            </motion.h1>
-          ))}
-          &nbsp;
-          {headerRight.map((el, index) => (
-            <motion.h1
-              className=""
-              variants={headerVariant}
-              custom={index + 4}
-              key={index}
-            >
-              <span>{el}</span>
-            </motion.h1>
-          ))}
-        </motion.div>
-        <motion.p
-          variants={subHeadingVariant}
-          initial="hidden"
-          animate="visible"
-          className={`text-[1.5rem] mb-10 italic text-white md:glow`}
-        >
-          your one stop online shop for tech gadgets
-        </motion.p>
-        <motion.div
-          animate={{ y: -20, opacity: 1 }}
-          transition={{ delay: 3, type: "spring" }}
-          className="opacity-0 w-full mt-[4rem] sm:w-auto flex lg:block justify-center"
-        >
-          <Link href={"/products"}>
-            <a>
-              <Button
-                content="Check Products"
-                type="link"
-                class="px-[2rem] py-4 md:py-3  rounded-full text-xl"
-              />
-            </a>
-          </Link>
-        </motion.div>
+    <header className="h-[90vh] mt-[5rem] rounded-3xl bg-gradient-to-br from-[#cacaca] to-[#ebebeb]">
+      <div className="w-full px-[15rem] pt-[15rem] relative">
+        <h2 className="mb-6 font-bold text-2xl text-primary">GET</h2>
+        <h2 className="font-bold text-6xl">YOUR TECH</h2>
+        <h1 className="text-white text-[15rem] text-center -mt-[3rem] font-bold">
+          ACCESORIES
+        </h1>
+        <div className="w-[45rem]  rotate-[25deg] absolute bottom-0 left-[40%] ">
+          <Image src={HeroImg} alt="hero" />
+        </div>
       </div>
-
-      <div className={`${classes.HeaderImg} w-[60%] h-full`}></div>
-    </div>
+      <div className="px-[15rem] mt-[1rem] flex items-start">
+        <Button
+          class="text-white bg-primary px-[1.5rem] mr-auto py-[1rem]"
+          content="Shop Now"
+        />
+        <p className="text-[#707070] text-right">
+          Buy Tech accessories for your devices,
+          <br />
+           like headphones, chargers,
+          airpods and others at good proices{" "}
+        </p>
+      </div>
+    </header>
   );
 }
 

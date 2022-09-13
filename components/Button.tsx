@@ -13,12 +13,12 @@ const Button = (props: Button) => {
   const style =
     props.type === "cart"
       ? "rounded-full bg-[#fff]"
-      : "flex items-center text-[#fff]";
+      : "rounded-full";
   return (
     <button
       disabled={props.disabled}
       onClick={props.clicked}
-      className={`border-2  ${props.class} ${style}  flex items-center text-[#fff]`}
+      className={` ${props.class} ${style}  flex items-center text-[#fff]`}
     >
       {props.content}
       {props.type === "link" ? <FiArrowRight className="ml-4" /> : null}

@@ -25,8 +25,7 @@ import Button from "../../components/Button";
 import Filter from "../../components/Filter";
 import Image from "next/image";
 import Loader from "../../components/Loader";
-import Featured from "../../components/Featured";
-
+// import Featured from "../../components/Categories";
 ///test images
 import Img from "../../public/others/iphone 12.png";
 import Img3 from "../../public/others/nubia red magic 6.png";
@@ -269,7 +268,7 @@ function Description({}: Props) {
       )}
 
       <div className="flex mt-[4rem]">
-        <Featured heading="Related Products" offset={2} limit={3} />
+        {/* <Featured /> */}
       </div>
 
       <div className={`${styles.Footer}  bottom-0 w-full`}>

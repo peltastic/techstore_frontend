@@ -16,14 +16,16 @@ import {
 import { AiOutlineMinus } from "react-icons/ai";
 import classes from "../styles/product.module.css";
 import Button from "../components/Button";
+import TestImg from "../assets/header.png";
+import Image from "next/image";
 
 type Props = {
-  name: string;
-  image: string;
-  price: number;
-  id: string;
-  category: string;
-  type: string;
+  // name: string;
+  // image: string;
+  // price: number;
+  // id: string;
+  // category: string;
+  // type: string;
 };
 
 function Product(props: Props) {
@@ -33,124 +35,135 @@ function Product(props: Props) {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [cartCount, setCartCount] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
-  const { refetch } = useQuery(
-    props.id,
-    () => {
-      let token = sessionStorage.getItem("token");
-      if (!token || !userId || !props.id) {
-        return;
-      }
-      return checkCart({ token: token, userId: userId, productId: props.id });
-    },
-    {
-      onSuccess: (data) => {
-        if (data?.data) {
-          setTotalPrice(data?.data.total_price);
-          setCartCount(data?.data.count);
-          setPrice(data?.data.price);
-        }
-      },
-      enabled: false,
-      refetchOnWindowFocus: false,
-    }
-  );
-  const { mutate } = useMutation(addCart, {
-    onSuccess: (data) => {
-      dispatch(incrementCartCount());
-    },
-  });
-  const increaseMutation = useMutation(increaseCart, {
-    onSuccess: () => {
-      setTotalPrice((prevState: number): number => (prevState += price));
-    },
-  });
-  const decreaseMutation = useMutation(decreaseCart, {
-    onSuccess: () => {
-      if (cartCount <= 1) {
-        dispatch(decrementCartCount());
-      }
-      setTotalPrice((prevState: number): number => (prevState -= price));
-    },
-  });
-  const increaseCartHandler = () => {
-    setCartCount((prevState: number): number => {
-      return prevState + 1;
-    });
+  // const { refetch } = useQuery(
+  //   props.id,
+  //   () => {
+  //     let token = sessionStorage.getItem("token");
+  //     if (!token || !userId || !props.id) {
+  //       return;
+  //     }
+  //     return checkCart({ token: token, userId: userId, productId: props.id });
+  //   },
+  //   {
+  //     onSuccess: (data) => {
+  //       if (data?.data) {
+  //         setTotalPrice(data?.data.total_price);
+  //         setCartCount(data?.data.count);
+  //         setPrice(data?.data.price);
+  //       }
+  //     },
+  //     enabled: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
+  // const { mutate } = useMutation(addCart, {
+  //   onSuccess: (data) => {
+  //     dispatch(incrementCartCount());
+  //   },
+  // });
+  // const increaseMutation = useMutation(increaseCart, {
+  //   onSuccess: () => {
+  //     setTotalPrice((prevState: number): number => (prevState += price));
+  //   },
+  // });
+  // const decreaseMutation = useMutation(decreaseCart, {
+  //   onSuccess: () => {
+  //     if (cartCount <= 1) {
+  //       dispatch(decrementCartCount());
+  //     }
+  //     setTotalPrice((prevState: number): number => (prevState -= price));
+  //   },
+  // });
+  // const increaseCartHandler = () => {
+  //   setCartCount((prevState: number): number => {
+  //     return prevState + 1;
+  //   });
 
-    let token = sessionStorage.getItem("token");
-    if (!userId || !props.id || !token) {
-      return;
-    }
-    if (cartCount === 0) {
-      mutate({
-        body: {
-          userId: userId,
-          productId: props.id,
-        },
-      });
-    } else {
-      increaseMutation.mutate({
-        token: token,
-        userId: userId,
-        productId: props.id,
-      });
-    }
-  };
-  const decreaseCartHandler = () => {
-    setCartCount((prevState: number): number => {
-      return prevState - 1;
-    });
-    let token = sessionStorage.getItem("token");
-    if (!userId || !props.id || !token) {
-      return;
-    }
-    decreaseMutation.mutate({
-      token: token,
-      userId: userId,
-      productId: props.id,
-    });
-  };
-  useEffect(() => {
-    if (!userId || !props.id) {
-      return;
-    }
-    refetch();
-  }, []);
+  //   let token = sessionStorage.getItem("token");
+  //   if (!userId || !props.id || !token) {
+  //     return;
+  //   }
+  //   if (cartCount === 0) {
+  //     mutate({
+  //       body: {
+  //         userId: userId,
+  //         productId: props.id,
+  //       },
+  //     });
+  //   } else {
+  //     increaseMutation.mutate({
+  //       token: token,
+  //       userId: userId,
+  //       productId: props.id,
+  //     });
+  //   }
+  // };
+  // const decreaseCartHandler = () => {
+  //   setCartCount((prevState: number): number => {
+  //     return prevState - 1;
+  //   });
+  //   let token = sessionStorage.getItem("token");
+  //   if (!userId || !props.id || !token) {
+  //     return;
+  //   }
+  //   decreaseMutation.mutate({
+  //     token: token,
+  //     userId: userId,
+  //     productId: props.id,
+  //   });
+  // };
+  // useEffect(() => {
+  //   if (!userId || !props.id) {
+  //     return;
+  //   }
+  //   refetch();
+  // }, []);
   return (
-    <div
-      className={`${classes.Product} ${classes.Glow}  mb-11 p-2 w-[30%] h-[35rem] cursor-pointer border-[2px] text-white border-[#ffffff3c] relative mx-4 ml-10`}
-    >
-      <div className={`border-white py-8 h-full w-full border `}>
-        <div
-          className="h-[70%] "
-          onClick={() => router.push(`/products/${props.id}`)}
-        >
-          <img src={props.image} className="h-full mx-auto block" />
-        </div>
-        <h1 className="text-center mt-[2rem] text-2xl">{props.name}</h1>
-        <div className=" w-full text-[1.5rem] flex absolute justify-center bottom-0 left-0 px-6 py-4 ">
-          <p className={`${cartCount ? "mr-auto" : null}`}>
-            N{totalPrice ? splitNumber(totalPrice) : splitNumber(props.price)}
-          </p>
-          {cartCount ? (
-            <div className=" w-[50%] justify-between flex items-center">
-              <Button
-                content={<AiOutlineMinus />}
-                disabled={cartCount === 0}
-                clicked={decreaseCartHandler}
-                class=""
-              />
-              <p>{cartCount}</p>
-              <Button
-                content={<MdAdd />}
-                clicked={increaseCartHandler}
-                class=""
-              />
-            </div>
-          ) : null}
+    <div className="w-[23%] mx-[1rem] my-[1rem]">
+      <div className="relative rounded-3xl  bg-gradient-to-br from-[#cacaca] to-[#ebebeb]  h-[20rem] ">
+        <div className=" center w-[20rem]">
+          <Image src={TestImg} />
         </div>
       </div>
+      <div className="text-black">
+        <p className="text-xl my-2">Beats headphone</p>
+        <p className="font-bold text-xl">$999</p>
+      </div>
     </div>
+    // <div
+    //   className={`${classes.Product} ${classes.Glow}  mb-11 p-2 w-[30%] h-[35rem] cursor-pointer border-[2px] text-white border-[#ffffff3c] relative mx-4 ml-10`}
+    // >
+    //   <div className={`border-white py-8 h-full w-full border `}>
+    //     <div
+    //       className="h-[70%] "
+    //       onClick={() => router.push(`/products/${props.id}`)}
+    //     >
+    //       <img src={props.image} className="h-full mx-auto block" />
+    //     </div>
+    //     <h1 className="text-center mt-[2rem] text-2xl">{props.name}</h1>
+    //     <div className=" w-full text-[1.5rem] flex absolute justify-center bottom-0 left-0 px-6 py-4 ">
+    //       <p className={`${cartCount ? "mr-auto" : null}`}>
+    //         N{totalPrice ? splitNumber(totalPrice) : splitNumber(props.price)}
+    //       </p>
+    //       {cartCount ? (
+    //         <div className=" w-[50%] justify-between flex items-center">
+    //           <Button
+    //             content={<AiOutlineMinus />}
+    //             disabled={cartCount === 0}
+    //             clicked={decreaseCartHandler}
+    //             class=""
+    //           />
+    //           <p>{cartCount}</p>
+    //           <Button
+    //             content={<MdAdd />}
+    //             clicked={increaseCartHandler}
+    //             class=""
+    //           />
+    //         </div>
+    //       ) : null}
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 
