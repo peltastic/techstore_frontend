@@ -62,6 +62,7 @@ const Layout = ({ children }: Props) => {
     <>
       <Head>
         <title>Tech Store</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <link
           rel="apple-touch-icon"

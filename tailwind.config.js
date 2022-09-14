@@ -6,12 +6,17 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        lg: "1000px"
+        md: "600px",
+        bp5: "700px",
+        bp3: "900px",
+        bp2: "1000px",
+        bp1: "1200px",
+        xl: "1300px",
       },
       colors: {
-        primary: "#e23e3e"
-      }
+        primary: "#e23e3e",
+      },
     },
   },
   plugins: [],
-}
+};

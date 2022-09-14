@@ -85,15 +85,17 @@ function Carts({}: Props) {
       >
         Checkout {splitNumber(checkout)}
       </button>
-      <div
-        className={`${classes.CartContainer} flex flex-wrap mt-[10rem] w-full `}
-      >
-        {cartData.length > 0 ? (
+
+      <div className={` mt-[10rem] w-[50%] mx-[5rem]`}>
+        <Cart />
+        <Cart />
+
+        {/* {cartData.length > 0 ? (
           <div className="flex flex-wrap justify-start w-full">
-            {cartData.map((item, index) => {
+          {cartData.map((item, index) => {
               return (
                 <Cart
-                  key={index}
+                key={index}
                   name={item?.product_name}
                   price={item?.price}
                   total_price={item?.total_price}
@@ -124,7 +126,7 @@ function Carts({}: Props) {
               </div>
             )}
           </>
-        )}
+        )} */}
       </div>
     </>
   );

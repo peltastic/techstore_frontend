@@ -20,7 +20,7 @@ const Featured = (props: Props) => {
   return (
     <section className="text-white w-full mt-28 mb-28">
       <h1 className="text-center mb-24 text-3xl text-black ">Featured Products</h1>
-      <div className="flex w-full flex-wrap">
+      <div className="flex w-full flex-wrap ml-6 bp1:ml-0">
         <Product />
         <Product />
         <Product />

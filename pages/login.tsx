@@ -4,17 +4,17 @@ import { signUp, login } from "../api/requests/auth";
 import { signinReq, signupReq } from "../api/types/auth";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import {setToken} from "../redux/reducers/user"
+import { setToken } from "../redux/reducers/user";
 import { useDispatch } from "react-redux";
 import Input from "../components/Input";
 import classes from "../styles/login.module.css";
 import Spinner from "../components/Spinner";
-import Button from "../components/Button"
+import Button from "../components/Button";
 
 type Props = {};
 
 const Login: NextPage = ({}: Props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const router = useRouter();
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [signupState, setSignupState] = useState<signupReq>({
@@ -42,7 +42,7 @@ const Login: NextPage = ({}: Props) => {
       setSigninState({ ...signinState, email: "", password: "" });
       const res: any = data;
       sessionStorage.setItem("token", res.data.accessToken);
-      dispatch(setToken(res.data.accessToken))
+      dispatch(setToken(res.data.accessToken));
       router.back();
     },
     onError: (error) => {
@@ -147,30 +147,45 @@ const Login: NextPage = ({}: Props) => {
     );
   }
 
-  const activeStyle: string = " border-[#B3541E] border border-b-0 z-10";
+  const activeStyle: string = ` ${
+    isLogin ? "border-primary" : "border-[#03ab069f]"
+  }  border-4 border z-10`;
   return (
-    <div className="h-screen flex text-white ">
-      <div className={ `w-[50%] ${classes.LoginImage}`}></div>
-      <div className={`${classes.Login} relative w-[50%] px-8 my-auto`}>
-        <div className=" flex justify-center ">
+    <div className=" mt-[15rem]  flex justify-center text-white ">
+      <div className={` relative h-[50rem] w-[50%] px-8 my-auto`}>
+        <div className=" absolute top-0 left-[50%] -translate-x-[50%] flex justify-center ">
           <button
-            className={` text-2xl sm:text-base px-6 py-3${isLogin ? activeStyle : null}`}
+            className={` text-black text-2xl sm:text-base px-6 py-3${
+              isLogin ? activeStyle : null
+            }`}
             onClick={() => setIsLogin(true)}
           >
             LOGIN
           </button>
           <button
-            className={` text-2xl sm:text-base px-6 py-3 ${!isLogin ? activeStyle : null}`}
+            className={` text-black text-2xl sm:text-base px-6 py-3 ${
+              isLogin ? null : activeStyle
+            }`}
             onClick={() => setIsLogin(false)}
           >
             SIGN UP
           </button>
         </div>
-        <div className="border-t border-t-[#B3541E] h-[20rem] px-6 py-11">
+        <div className=" mt-[5rem] border px-6 py-11">
+          <div className="text-center text-black text-4xl mb-[6rem]">
+            {isLogin ? (
+              <h1 className="">Login Into you Account</h1>
+            ) : (
+              <h1>Create a New Account</h1>
+            )}
+          </div>
           <div className="text-white">
             <form onSubmit={onSubmit}>
               {content}
-              <Button content="Submit" class=" mx-auto px-12 py-3 rounded-full " />
+              <Button
+                content={isLogin ? "Login" : "Sign In"}
+                class={`${isLogin ? "bg-primary" : "bg-[#03ab069f]"} flex justify-center text-white text-3xl mx-auto px-12 py-5 w-[90%] rounded-xl`}
+              />
             </form>
           </div>
           {errorMessage ? (
@@ -180,7 +195,11 @@ const Login: NextPage = ({}: Props) => {
           ) : null}
         </div>
         {isLoading || signupMutation.isLoading ? (
-          <div className={`absolute -translate-x-[50%] left-[50%] ${isLogin? "-bottom-[7rem]" :"-bottom-[13rem]"} mx-auto flex items-center  justify-center`}>
+          <div
+            className={`absolute -translate-x-[50%] left-[50%] ${
+              isLogin ? "-bottom-[7rem]" : "-bottom-[13rem]"
+            } mx-auto flex items-center  justify-center`}
+          >
             {isLogin ? <p>Authorizing</p> : null}
             <Spinner />
           </div>

@@ -24,7 +24,7 @@ function Input(props: Props) {
         placeholder={props.placeholder}
         onChange={props.changed}
         value={props.value}
-        className={`${props.class} block rounded-full px-5 py-5 text-3xl text-center text-[#514e4e]`}
+        className={`${props.class} block rounded-xl outline-none focus:border-2 transition-all px-5 py-5 text-3xl text-center text-[#514e4e] border`}
       />
       {props.placeholder === "Password" ? (
         <>

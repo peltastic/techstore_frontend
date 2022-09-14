@@ -24,10 +24,10 @@ const Filter = (props: Props) => {
     setDropDown(!dropDown);
   };
   return (
-    <div className=" text-white w-[12rem] text-center mr-12">
+    <div className=" text-black w-[12rem] text-center mr-12">
       <button
         onClick={dropHandler}
-        className={`${props.class} border justify-center flex items-center border-white px-6 py-2 w-full`}
+        className={`${props.class} border rounded-full justify-center flex items-center border-black px-6 py-2 w-full`}
       >
         <p>{props.filter_name}</p>
         <IoIosArrowDown className="ml-6" />
@@ -35,7 +35,7 @@ const Filter = (props: Props) => {
 
       <ul
         className={`${
-          props.drop === props.filter_name ? "border  h-auto py-2" : "h-0 py-0"
+          props.drop === props.filter_name ? "border text-white  h-auto py-2" : "h-0 py-0"
         } ${
           dropDown ? "border glow-border" : null
         } transition-all max-h-[70rem] bg-black relative z-50`}

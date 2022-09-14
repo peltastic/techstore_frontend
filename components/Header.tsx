@@ -40,32 +40,34 @@ function Header() {
     controls.start("visible");
   }, []);
 
-  const headerLeft = ["T", "E", "C", "H"];
-  const headerRight = ["S", "T", "O", "R", "E"];
 
   return (
-    <header className="h-[90vh] mt-[5rem] rounded-3xl bg-gradient-to-br from-[#cacaca] to-[#ebebeb]">
-      <div className="w-full px-[15rem] pt-[15rem] relative">
-        <h2 className="mb-6 font-bold text-2xl text-primary">GET</h2>
-        <h2 className="font-bold text-6xl">YOUR TECH</h2>
-        <h1 className="text-white text-[15rem] text-center -mt-[3rem] font-bold">
+    <header className="h-[90vh] mt-[1rem] md:mt-[5rem] rounded-3xl bg-gradient-to-br from-[#cacaca] to-[#ebebeb]">
+      <div className="w-full px-[4rem] sm:px-[8rem] bp2:px-[15rem]  center -mt-[5rem]">
+        <h2 className="mb-6 font-bold text-2xl md:text-[1.2rem] bp1:text-2xl text-primary">
+          GET
+        </h2>
+        <h2 className="font-bold text-[3rem] bp1:text-6xl">YOUR TECH</h2>
+        <h1 className="text-[8rem] bp5:text-[10rem] bp3:text-[12rem] bp1:text-[15rem] xl:text-[17rem] text-white font-bold -mt-[1rem] bg5:-mt-[3rem]">
           ACCESORIES
         </h1>
-        <div className="w-[45rem]  rotate-[25deg] absolute bottom-0 left-[40%] ">
+
+        <div className="w-[25rem] bg5:w-[30rem] bp1:w-[45rem]  rotate-[25deg] absolute top-0 left-[40%] ">
           <Image src={HeroImg} alt="hero" />
         </div>
-      </div>
-      <div className="px-[15rem] mt-[1rem] flex items-start">
-        <Button
-          class="text-white bg-primary px-[1.5rem] mr-auto py-[1rem]"
-          content="Shop Now"
-        />
-        <p className="text-[#707070] text-right">
-          Buy Tech accessories for your devices,
-          <br />
-           like headphones, chargers,
-          airpods and others at good proices{" "}
-        </p>
+        <div className=" mt-[7rem] bg5:mt-[5rem] flex items-center">
+          <Button
+            class="text-white bg-primary px-[3.6rem] bp2:px-[5.4rem] mr-auto py-[1.2rem] bp2:py-[1.8rem] text-3xl"
+            content="Shop Now"
+          />
+          <p className="text-[#707070] text-xl text-right">
+            Buy Tech accessories for your devices,
+            <br />
+            like headphones, chargers, airpods
+            <br className="block bp5:hidden" />
+            and others at good proices{" "}
+          </p>
+        </div>
       </div>
     </header>
   );

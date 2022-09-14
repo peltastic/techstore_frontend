@@ -119,7 +119,7 @@ function Product(props: Props) {
   //   refetch();
   // }, []);
   return (
-    <div className="w-[23%] mx-[1rem] my-[1rem]">
+    <div className="w-[45%] bp1:w-[23%] mx-[1rem] my-[1rem]">
       <div className="relative rounded-3xl  bg-gradient-to-br from-[#cacaca] to-[#ebebeb]  h-[20rem] ">
         <div className=" center w-[20rem]">
           <Image src={TestImg} />
